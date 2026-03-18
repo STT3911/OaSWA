@@ -1,15 +1,67 @@
-<html>
-    <head>
-        <title>
-            E-commerce Website Design
-        </title>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techstore</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
 <body>
-<header>
-    <div>
-
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">T</span>
+            Techstore
+        </a>
+    <nav class="nav">
+      <a href="#" class="nav__link">Products</a>
+      <a href="#" class="nav__link">Categories</a>
+      <a href="#" class="nav__link">Deals</a>
+      <a href="#" class="nav__link">About</a>
+    </nav>
+    </div class="header-icons">
+        <button class="icon-btn">&#128722</button>
+        <a href="cart.html" class="icon-btn cart-link">
+            &#128270
+            <span class="cart-badge">0</span>
+        </a>
+        </div>
     </div>
-</header>
+  </header>
+   <main class="container">
+    <div class="catalog-title">
+        <h1>Premium Electronics</h1>
+        <p>Discover our curated collection of high-quality tech products</p>
+    </div>
 
-</body>    
+    <div class="catalog-layout">
+
+        <aside class="filters">
+            <h3>Filters</h3>
+
+                    <div class="filter-group">
+                        <h4>Rating</h4>
+                        <label><input type="radio" name="rating" value="5"> 5+ Stars</label>
+                        <label><input type="radio" name="rating" value="4"> 4+ Stars</label>
+                        <label><input type="radio" name="rating" value="3"> 3+ Stars</label>
+                    </div>
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <input type="range" id="price-range" min="0" max="3000" value="3000">
+                    <div class="price-labels">
+                        <span>$0</span>
+                        <span id="price max">$3000</span>
+                    </div> 
+                </div>
+                <button class="btn-clear" onclick="clearFilters()">Clear All Filters</button>
+            </aside>
+//Denchik я сделаю каталог ты сделай футер!!!!
+
+
+
+    </div> 
+   </main>
+
+   /// footer here
+</body>
 </html>
