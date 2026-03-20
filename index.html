@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <!--скрипты есче-->
-<script src="js/data.js"></script>
-<script src="js/cart.js"></script>
-<script src="js/catalog.js"></script>
 
 <body>
     <header class="header">
@@ -19,18 +16,18 @@
             Techstore
         </a>
     <nav class="nav">
-      <a href="product.html" class="nav__link">P    roducts</a>
+      <a href="product.html" class="nav__link">Products</a>
       <a href="#" class="nav__link">Categories</a>
       <a href="#" class="nav__link">Deals</a>
       <a href="#" class="nav__link">About</a>
     </nav>
     <div class="header-icons">
-        <button class="icon-btn">&#128270</button>
+        <button class="icon-btn">&#128269;</button>
         <a href="cart.html" class="icon-btn cart-link">
-            &#128722
+                    &#128722;
             <span class="cart-badge">0</span>
         </a>
-        </div>
+    </div>
     </div>
   </header>
    <main class="container">
@@ -60,9 +57,7 @@
                 </div>
                 <button class="btn-clear" onclick="clearFilters()">Clear All Filters</button>
             </aside>
-    </div>
-
-
+    
     
     <div class="catalog-right">
         <div class="catalog-toolbar">
@@ -77,9 +72,8 @@
                 </select>
             </div>
         </div>
+        <div class="products-grid" id="products-grid"></div>
     </div>
-
-    <div class="products-grid" id="products-grid"></div>
 
    </main>
 
@@ -133,7 +127,7 @@
             <div class ="footer-bottom">
                 <p align="center">
                     © 2026 Techstore. All rights reserved.
-                </p>
+                </p>    
                 <ul align = "center">
                     <a href = "#"> Privacy Policy</a>
                     <a href = "#"> Terms of Service</a>
@@ -142,5 +136,8 @@
             </div>
         </div>
     </footer>
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/catalog.js"></script>
 </body>
 </html>
