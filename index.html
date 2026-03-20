@@ -6,6 +6,11 @@
     <title>Techstore</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+<!--скрипты есче-->
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/catalog.js"></script>
+
 <body>
     <header class="header">
       <div class="container">
@@ -14,15 +19,15 @@
             Techstore
         </a>
     <nav class="nav">
-      <a href="product.html" class="nav__link">Products</a>
+      <a href="product.html" class="nav__link">P    roducts</a>
       <a href="#" class="nav__link">Categories</a>
       <a href="#" class="nav__link">Deals</a>
       <a href="#" class="nav__link">About</a>
     </nav>
-    </div class="header-icons">
-        <button class="icon-btn">&#128722</button>
+    <div class="header-icons">
+        <button class="icon-btn">&#128270</button>
         <a href="cart.html" class="icon-btn cart-link">
-            &#128270
+            &#128722
             <span class="cart-badge">0</span>
         </a>
         </div>
@@ -50,16 +55,32 @@
                     <input type="range" id="price-range" min="0" max="3000" value="3000">
                     <div class="price-labels">
                         <span>$0</span>
-                        <span id="price max">$3000</span>
+                        <span id="price-max">$3000</span>
                     </div> 
                 </div>
                 <button class="btn-clear" onclick="clearFilters()">Clear All Filters</button>
             </aside>
-//Denchik я сделаю каталог ты сделай футер!!!!
+    </div>
 
 
+    
+    <div class="catalog-right">
+        <div class="catalog-toolbar">
+            <span id="products-count"></span>
+            <div class="sort">
+                <label>Sort by:</label>
+                <select id="sort-select" onchange="applySortAndFilter()">
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="name-desc">Name (Z-A)</option>
+                    <option value="price-asc">Price (Low to High)</option>
+                    <option value="price-desc">Price (High to Low)</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
-    </div> 
+    <div class="products-grid" id="products-grid"></div>
+
    </main>
 
    <footer class = "footer">
@@ -109,7 +130,7 @@
                 <button type = "submit">Subscribe</button>
             </div> 
 
-            <div class = footer-bottom>
+            <div class ="footer-bottom">
                 <p align="center">
                     © 2026 Techstore. All rights reserved.
                 </p>
