@@ -2,13 +2,13 @@ function renderProducts(list) {
     const grid = document.getElementById('products-grid')
     const count = document.getElementById('products-count')
 
-    const.textContent = list.length + 'products'
+    count.textContent = list.length + 'products'
 
     if(list.length === 0) {
         grid.innerHTML = '<p>No products found</p>'
         return
     }
-    grid.innerHTML = list.map(product => '
+    grid.innerHTML = list.map(product => `
         <div class="product-card">
         <a href="product.html?id=${product.id}">
             <img src="${product.images[0]}" alt="${product.name}">
@@ -17,39 +17,42 @@ function renderProducts(list) {
             <a href="product.html?id=${product.id}">
                 <h3 class="product-card__name">${product.name}</h3>
             </a>
-            <div class="prodcut-card__raiting">${renderStars(product.raiting)}</div>
+            <div class="prodcut-card__rating">${renderStars(product.rating)}</div>
             <div class="product-card__bottom">
                 <span class="product-card__price">$${product.price}</span>
-                <span class="product-card__category">$${product.category}</span>
+                <span class="product-card__category">${product.category}</span>
             </div>
             <button class="btn-add" onClick="addToCart(${product.id})">Add To Cart</button>
             </div>
         </div>
-        ').join('') 
+        `).join('') 
 }
 
-function renderStars(raiting) {
+function renderStars(rating) {
     let stars=''
     for (let i=1; i<=5; i++) {
-        stars+= '<span class="star full"★</span>'
+        if (i <= rating) {
+        stars += '<span class="star full">★</span>';
     } else {
-        stars+='<span class ="star empty">☆</span>' 
+        stars += '<span class ="star empty">☆</span>';
+        }
     }
-    return stars + '<span class="raiting-num">(${raiting})</span>'
+    return stars + `<span class="rating-num">(${rating})</span>`
 }
 
-function applySortAndFilters() {
+function applySortAndFilter() {
     const sortValue=document.getElementById('sort-select').value
     const maxPrice = parseFloat(document.getElementById('price-range').value)
-    const raitingInput = document.querySelector('input[name="raiting"]:checked')
-    const minRaiting = raitingInput ? parseFloat(raitingInput.value) : 0
+    const ratingInput = document.querySelector('input[name="rating"]:checked')
+    const minRaiting = ratingInput ? parseFloat(ratingInput.value) : 0
 
-    let result = renderProducts.filter(p => {
-    result.sort((a, b) => a.name.localCompare(b.name))
+    let result = products.filter(p => {
+        return p.price <= maxPrice && p.rating >=minRaiting
+        })
         if (sortValue === 'name-asc') {
-            result.sort((a,b) => a.name.localCompare(b.name))
+            result.sort((a,b) => a.name.localeCompare(b.name))
         }else if (sortValue === 'name-desc'){
-            result.sort((a,b) => b.name.localCompare(a.name))
+            result.sort((a,b) => b.name.localeCompare(a.name))
         }   else if (sortValue === 'price-asc') {
             result.sort((a,b) => a.price - b.price)
         } else if (sortValue === 'price-desc') {
@@ -57,19 +60,31 @@ function applySortAndFilters() {
         }
         renderProducts(result)
     }
-}
 
 function clearFilters() {
     document.getElementById('price-range').value = 3000
     document.getElementById('price-max').textContent = '$3000'
-    const checked = document.querySelector ('input[name="raiting"]:checked')
+    const checked = document.querySelector ('input[name="rating"]:checked')
     if (checked) checked.checked = false
-    applySortAndFilters()
+    applySortAndFilter()
 }
 
 
 //ползунок и движение 
-
+document.addEventListener('DOMContentLoaded', function () {
+    const range = document.getElementById('price-range')
+    if (range) {
+        range.addEventListener('input', function () {
+            document.getElementById('price-max').textContent = '$' + this.value
+            applySortAndFilter()
+        })
+    }
 //фильтр по рейтингу
 
+document.querySelectorAll('input[name="rating"]').forEach(input => {
+ input.addEventListener('change', applySortAndFilter)   
+});
+
+renderProducts(products)
+})
 //сделаю потом Денис андреевич, пж стиля навалите
