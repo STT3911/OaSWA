@@ -26,9 +26,9 @@ const products = [
     rating: 4,
     category: "Audio",
     images: [
-      "images/headp1",
-      "images/headp2",
-      "images/headp3"
+      "images/headp1.jpg",
+      "images/headp2.jpg",
+      "images/headp3.jpg"
     ],
     description: "Premium sound quality with active noise cancellation. Comfortable over-ear design for long listening sessions.",
     specs: {
@@ -45,9 +45,9 @@ const products = [
     rating: 4,
     category: "Photography",
     images: [
-      "images/camera1",
-      "images/camera2",
-      "images/camera3"
+      "images/camera1.jpg",
+      "images/camera2.jpg",
+      "images/camera3.jpg"
       ],
     description: "Professional-grade DSLR camera for stunning photography. Perfect for both beginners and professionals.",
     specs: {
@@ -64,9 +64,9 @@ const products = [
     rating: 4.5,
     category: "Computers",
     images: [
-      "images/note1",
-      "images/note2",
-      "images/note3"
+      "images/note1.jpg",
+      "images/note2.jpg",
+      "images/note3.jpg"
       ],
     description: "Powerful laptop for professionals. Fast performance, stunning display, all-day battery life.",
     specs: {
@@ -83,9 +83,9 @@ const products = [
     rating: 4,
     category: "Wearables",
     images: [
-      "images/watch1",
-      "images/watch2",
-      "images/watch3"
+      "images/watch1.jpg",
+      "images/watch2.jpg",
+      "images/watch3.jpg"
       ],
     description: "Track your fitness goals with this advanced smartwatch. Heart rate monitoring, GPS, and more.",
     specs: {
@@ -102,9 +102,9 @@ const products = [
     rating: 4.5,
     category: "Tablets",
     images: [
-      "images/tab1",
-      "images/tab2",
-      "images/tab3"
+      "images/tab1.jpg",
+      "images/tab2.jpg",
+      "images/tab3.jpg"
       ],
     description: "Slim and powerful tablet for work and entertainment. Crystal clear display and all-day battery.",
     specs: {
