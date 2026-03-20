@@ -64,9 +64,9 @@ const products = [
     rating: 4.5,
     category: "Computers",
     images: [
-      "images/note1.jpg",
-      "images/note2.jpg",
-      "images/note3.jpg"
+      "images/note1.jpeg",
+      "images/note2.jpeg",
+      "images/note3.jpeg"
       ],
     description: "Powerful laptop for professionals. Fast performance, stunning display, all-day battery life.",
     specs: {
