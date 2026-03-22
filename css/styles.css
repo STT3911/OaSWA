@@ -284,3 +284,10 @@ accent-color: #2563eb;
 .btn-add:hover{
     background: #1d4ed8;
 }
+
+img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}

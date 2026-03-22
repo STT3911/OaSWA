@@ -11,7 +11,7 @@ function renderProducts(list) {
     grid.innerHTML = list.map(product => `
         <div class="product-card">
         <a href="product.html?id=${product.id}">
-            <img src="${product.images[0]}" alt="${product.name}>
+            <img src="${product.images[0]}" alt="${product.name}">
         </a>
         <div class="product-card__info">
             <a href="product.html?id=${product.id}">
