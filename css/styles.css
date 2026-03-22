@@ -29,22 +29,11 @@ a {
     box-shadow: #00000000 0px 0px 0px 0px, #00000000 0px 0px 0px 0px, #00000000 0px 0px 0px 0px, #00000000 0px 0px 0px 0px, #0000001A 0px 1px 3px 0px, #0000001A 0px 1px 2px -1px;
 }
 
-.header-icons {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    width: 96px;
-    flex-shrink: 0;
-}
-
-.header .container {
+.header.container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
-    max-width: 1216px;
-    margin: 0 auto;
-    padding: 0 20px;
+    height: 70px;
 }
 
 .logo{
@@ -53,8 +42,6 @@ a {
     gap: 8px;
     font-size: 20px;
     font-weight: 700;
-    width: 144px;
-    flex-shrink: 0;
 }
 
 .logo-icon {
@@ -72,22 +59,19 @@ a {
 
 .nav {
     display: flex;
-    gap: 32px;            
-    justify-content: center;
-    flex: 1;  
+    gap: 28px;
+    margin-left: auto;
 }
 
-.nav__link{
-    color: #364153;        
-    font-size: 16px;
+.nav-link{
+    color: #374151;
+    font-size:14px;
     transition: color 0.2s;
-    text-decoration: none;
 }
 
-.nav__link:hover{
+.nav-link:hover{
     color: #2563eb;
 }
-
 .icon-btn{
     background: none;
     border: none;
@@ -95,7 +79,6 @@ a {
     cursor: pointer;
     position: relative;
 }
-
 .cart-badge {
     position: absolute;
     top: -6px;
@@ -117,12 +100,12 @@ a {
 }
 
 .catalog-title h1{
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 700;
 }
 
 .catalog-title p{
-    color: #4A5565;
+    color: #6b7280;
     margin-top: 4px;
     font-size: 14px;
 }
@@ -166,7 +149,6 @@ a {
 width: 100%;
 accent-color: #2563eb;
 }
-
 .price-labels {
     display: flex;
     justify-content: space-between;
@@ -196,7 +178,6 @@ accent-color: #2563eb;
 .catalog-right {
     flex: 1;
 }
-
 .catalog-toolbar{
     display: flex;
     align-items: center;
@@ -236,25 +217,21 @@ accent-color: #2563eb;
 .products-card:hover{
     box-shadow: 0 4px 20px rgba(0, 0, 0, 1);
 }
-
 .products-card img {
     width: 100%;
     height: 180px;
     object-fit: cover;
     display: block;
 }
-
 .products-card__info{
     padding: 14px;
 }
-
 .products-card__name{
     font-size: 15px;
     font-weight: 600;
     margin-bottom: 6px;
     color:black;
 }
-
 .products-card__name:hover {
     color: #2563eb;
 }
@@ -292,11 +269,12 @@ accent-color: #2563eb;
     letter-spacing: 0.5px;
 }
 
+
 img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
 }
 
 .footer {
