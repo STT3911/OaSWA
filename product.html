@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">T</span>
+            Techstore
+        </a>
+    <nav class="nav">
+      <a href="product.html" class="nav__link">Products</a>
+      <a href="#" class="nav__link">Categories</a>
+      <a href="#" class="nav__link">Deals</a>
+      <a href="#" class="nav__link">About</a>
+    </nav>
+    <div class="header-icons">
+        <button class="icon-btn">&#128269;</button>
+        <a href="cart.html" class="icon-btn cart-link">
+                    &#128722;
+            <span class="cart-badge">0</span>
+        </a>
+    </div>
+    </div>
+  </header>
+
+
+<main class="container"
+    <div class="breadcrumb">
+        <a href="index.html">Products</a>
+        <span>></span>
+        <span id="breadcrumb-category"></span>
+        <span>></span>
+        <span id="breadcrumb-name"></span>
+    </div>
+
+    <div class="product-layout">
+        <div class="slider">
+            <button class="slider-btn slider-btn--prev" onclick="changeSlide(-1)">&#8249</button>
+            <img id="slider-main" src="" alt="">
+            <button class="slider-btn slider-btn--next" onclick="changeSlide(1)">&#8250</button>
+        </div>
+        <div class="slider-thumbs"></div>
+    </div>
+
+    <div class="product-info">
+        <h1 id="product-name"></h1>
+        <div id="product-raiting"></div>
+        <p id="product-reviews" id="product-reviews"></p>
+        <div class="product-price-row">
+            <span class="product-price" id="product-price"></span>
+            <span class="product-free-shipping">Free Shipping</span>
+        </div>
+
+        <div class="product-highlights" id="product-highlights"></div>
+
+        <div class="product-description">
+            <h3>Description</h3>
+            <p id="product-description"></p>
+        </div>
+        <div class="product-quantity">
+            <span>Quantity</span>
+            <div class="qty-controls">
+                <button onclick="changeQty(-1)">-</button>
+                <span id="qty-value">1</span>
+                <button onclick="changeQty(1)">+</button>
+            </div>
+        </div>
+        <button class="btn-add-to-cart"id="add-to-cart-btn" onclick="handleAddToCart()">&#128722</button>
+
+        <div class="accordion">
+            <button class="accordion-btn"onclick="toggleAccordion()">
+                Technical Specification
+                <span class="accordion-icon">&#8964</span>
+            </button>
+            <div class="accordion-body"id="accordion-body"></div>
+        </div>
+        </div>
+    </div>
+    <div class="related">
+        <h2>Related Products</h2>
+        <div class="products-grid" id="related-grid"></div>
+    </div>
+</main>
+<footer class = "footer">
+        <div>
+            <div class = "footer-brand">
+                <div class="footer-logo">
+                    <div class="logo-icon">T</div>
+                    <span class="logo-text">TechStore</span>
+                </div>
+                <p>
+                    Your trusted destination for premium electronics and tech accessories. Quality products, competitive prices, exceptional service.
+                </p>
+                <p>
+
+                </p>
+            </div>
+
+            <div class = "footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <a href = "#">Shop All Products</a><br>
+                    <a href = "#">Special Deals</a><br>
+                    <a href = "#">About Us</a><br>
+                    <a href = "#">Contact Support</a>
+                </ul>
+            </div>
+
+            <div class = "footer-service">
+                <h3>Customer Sevice</h3>
+                <ul>
+                    <a href = "#">Shipping Information</a><br>
+                    <a href = "#">Return & Exchanges</a><br>
+                    <a href = "#">FAQ</a><br>
+                    <a href = "#">Track Order</a>
+                </ul>
+                <p>
+                    Customer Support:<br>
+                    <strong style="font-weight: 500; color: #000000;">1-800-TECH-SHOP</strong><br>
+                    support@techstore.com
+                </p>
+            </div>
+
+            <div class = "footer-newsletter">
+                <h3>Newsletter</h3>
+                <p>
+                    Subscribe to get special offers, free giveaway, and updates.
+                </p>
+                <input type = "email" name = "email" placeholder = "Enter your email" required>
+                <br>
+                <button type = "submit">Subscribe</button>
+            </div> 
+
+            <div class ="footer-bottom">
+                <p align="center">
+                    © 2026 Techstore. All rights reserved.
+                </p>    
+                <ul align = "center">
+                    <a href = "#"> Privacy Policy</a>
+                    <a href = "#"> Terms of Service</a>
+                    <a href = "#"> Cookie Policy</a>
+                </ul>
+            </div>
+        </div>
+    </footer>
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/catalog.js"></script>
+</body>
+</html>
