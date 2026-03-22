@@ -219,7 +219,7 @@ accent-color: #2563eb;
 }
 .products-card img {
     width: 100%;
-    height: 200%;
+    height: 180px;
     object-fit: cover;
     display: block;
 }
