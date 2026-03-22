@@ -269,21 +269,6 @@ accent-color: #2563eb;
     letter-spacing: 0.5px;
 }
 
-.btn-add{
-    width: 100%;
-    padding: 8px;
-    background: #2563eb;
-    color: black;
-    border: none;
-    border-radius: 10px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: backround 0.2s;
-}
-
-.btn-add:hover{
-    background: #1d4ed8;
-}
 
 img {
   width: 100%;

@@ -9,23 +9,22 @@ function renderProducts(list) {
         return
     }
     grid.innerHTML = list.map(product => `
-        <div class="product-card">
-        <a href="product.html?id=${product.id}">
-            <img src="${product.images[0]}" alt="${product.name}">
-        </a>
-        <div class="product-card__info">
-            <a href="product.html?id=${product.id}">
-                <h3 class="product-card__name">${product.name}</h3>
-            </a>
-            <div class="product-card__rating">${renderStars(product.rating)}</div>
-            <div class="product-card__bottom">
-                <span class="product-card__price">$${product.price}</span>
-                <span class="product-card__category">${product.category}</span>
-            </div>
-            <button class="btn-add" onClick="addToCart(${product.id})">Add To Cart</button>
-            </div>
-        </div>
-        `).join('') 
+  <div class="product-card">
+    <a href="product.html?id=${product.id}">
+      <img src="${product.images[0]}" alt="${product.name}">
+    </a>
+    <div class="product-card__info">
+      <a href="product.html?id=${product.id}">
+        <h3 class="product-card__name">${product.name}</h3>
+      </a>
+      <div class="product-card__rating">${renderStars(product.rating)}</div>
+      <div class="product-card__bottom">
+        <span class="product-card__price">$${product.price}</span>
+        <span class="product-card__category">${product.category}</span>
+      </div>
+    </div>
+  </div>
+`).join('')
 }
 
 function renderStars(rating) {
