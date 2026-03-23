@@ -4,7 +4,8 @@ const products = [
     name: "Portable Bluetooth Speaker",
     subtitle: "Audio",
     price: 129.99,
-    rating: 3.5,
+    rating: 4.5,
+    reviewCount: 327,
     category: "Audio",
     images: [
       "images/speaker1.jpg",
@@ -24,6 +25,7 @@ const products = [
     subtitle: "Audio",
     price: 299.99,
     rating: 4,
+    reviewCount: 412,
     category: "Audio",
     images: [
       "images/headp1.jpg",
@@ -43,6 +45,7 @@ const products = [
     subtitle: "Photography",
     price: 2499.99,
     rating: 4,
+    reviewCount: 89,
     category: "Photography",
     images: [
       "images/camera1.jpg",
@@ -62,12 +65,13 @@ const products = [
     subtitle: "Computers",
     price: 1899.99,
     rating: 4.5,
+    reviewCount: 156,
     category: "Computers",
     images: [
       "images/note1.jpeg",
-      "images/note2.jpeg",
-      "images/note3.jpeg"
-      ],
+      "images/note2.jpg",
+      "images/note3.jpg"
+    ],
     description: "Powerful laptop for professionals. Fast performance, stunning display, all-day battery life.",
     specs: {
       "Processor": "Intel i7",
@@ -81,6 +85,7 @@ const products = [
     subtitle: "Wearables",
     price: 449.99,
     rating: 4,
+    reviewCount: 203,
     category: "Wearables",
     images: [
       "images/watch1.jpg",
@@ -100,6 +105,7 @@ const products = [
     subtitle: "Tablets",
     price: 799.99,
     rating: 4.5,
+    reviewCount: 94,
     category: "Tablets",
     images: [
       "images/tab1.jpg",

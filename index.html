@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce Website Design</title>
+    <title>TechStore — Premium Electronics</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<!--скрипты есче-->
-
 <body>
     <header class="header">
       <div class="container">
         <a href="index.html" class="logo">
             <span class="logo-icon">T</span>
-            Techstore
+            TechStore
         </a>
-    <nav class="nav">
-      <a href="product.html" class="nav__link">Products</a>
-      <a href="#" class="nav__link">Categories</a>
-      <a href="#" class="nav__link">Deals</a>
-      <a href="#" class="nav__link">About</a>
-    </nav>
-    <div class="header-icons">
-        <button class="icon-btn">&#128269;</button>
-        <a href="cart.html" class="icon-btn cart-link">
-                    &#128722;
+        <nav class="nav" aria-label="Main">
+          <a href="index.html" class="nav__link">Products</a>
+          <a href="#" class="nav__link">Categories</a>
+          <a href="#" class="nav__link">Deals</a>
+          <a href="#" class="nav__link">About</a>
+        </nav>
+        <div class="header-icons">
+          <button type="button" class="icon-btn" aria-label="Search">
+            <svg class="icon-btn__svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </button>
+          <a href="cart.html" class="icon-btn cart-link" aria-label="Cart">
+            <svg class="icon-btn__svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
             <span class="cart-badge">0</span>
-        </a>
-    </div>
+          </a>
+        </div>
     </div>
   </header>
    <main class="container">
@@ -39,40 +39,51 @@
     <div class="catalog-layout">
 
         <aside class="filters">
-            <h3>Filters</h3>
+            <h3 class="filters__title">Filters</h3>
 
-                    <div class="filter-group">
-                        <h4>Rating</h4>
-                        <label><input type="radio" name="rating" value="5"> 5+ Stars</label>
-                        <label><input type="radio" name="rating" value="4"> 4+ Stars</label>
-                        <label><input type="radio" name="rating" value="3"> 3+ Stars</label>
-                    </div>
-                <div class="filter-group">
-                    <h4>Price Range</h4>
-                    <input type="range" id="price-range" min="0" max="3000" value="3000">
-                    <div class="price-labels">
-                        <span>$0</span>
-                        <span id="price-max">$3000</span>
-                    </div> 
-                </div>
-                <button class="btn-clear" onclick="clearFilters()">Clear All Filters</button>
-            </aside>
-    
-    
-    <div class="catalog-right">
-        <div class="catalog-toolbar">
-            <span id="products-count"></span>
-            <div class="sort">
-                <label>Sort by:</label>
-                <select id="sort-select" onchange="applySortAndFilter()">
-                    <option value="name-asc">Name (A-Z)</option>
-                    <option value="name-desc">Name (Z-A)</option>
-                    <option value="price-asc">Price (Low to High)</option>
-                    <option value="price-desc">Price (High to Low)</option>
-                </select>
+            <div class="filter-group">
+                <h4 class="filter-group__title">Rating</h4>
+                <label class="filter-option"><input type="radio" name="rating" value="5"> 5+ Stars</label>
+                <label class="filter-option"><input type="radio" name="rating" value="4"> 4+ Stars</label>
+                <label class="filter-option"><input type="radio" name="rating" value="3"> 3+ Stars</label>
             </div>
+
+            <div class="filter-group">
+                <h4 class="filter-group__title">Price Range</h4>
+                <div class="price-range-single">
+                    <div class="price-range-single__rail" aria-hidden="true"></div>
+                    <div class="price-range-single__fill" id="price-range-fill" aria-hidden="true"></div>
+                    <input type="range" id="price-range" class="price-range-single__input" min="0" max="3000" step="1" value="3000" aria-label="Maximum price">
+                </div>
+                <div class="price-labels">
+                    <span>$0</span>
+                    <span id="price-max">$3000</span>
+                </div>
+            </div>
+
+            <button type="button" class="btn-clear" onclick="clearFilters()">Clear All Filters</button>
+        </aside>
+
+        <div class="catalog-right">
+            <div class="catalog-toolbar">
+                <span id="products-count"></span>
+                <div class="sort">
+                    <label class="sort__label" for="sort-select">Sort by:</label>
+                    <div class="sort-select-wrap">
+                        <select id="sort-select" class="sort-select" onchange="applySortAndFilter()">
+                            <option value="name-asc">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                            <option value="price-asc">Price (Low to High)</option>
+                            <option value="price-desc">Price (High to Low)</option>
+                        </select>
+                        <span class="sort-select__chev" aria-hidden="true">
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="products-grid" id="products-grid"></div>
         </div>
-        <div class="products-grid" id="products-grid"></div>
     </div>
 
     </main>
@@ -103,7 +114,7 @@
             </div>
 
             <div class = "footer-service">
-                <h3>Customer Sevice</h3>
+                <h3>Customer Service</h3>
                 <ul>
                     <a href = "#">Shipping Information</a><br>
                     <a href = "#">Return & Exchanges</a><br>
@@ -129,7 +140,7 @@
 
             <div class ="footer-bottom">
                 <p align="center">
-                    © 2026 Techstore. All rights reserved.
+                    © 2026 TechStore. All rights reserved.
                 </p>    
                 <ul align = "center">
                     <a href = "#"> Privacy Policy</a>
@@ -140,6 +151,7 @@
         </div>
     </footer>
 <script src="js/data.js"></script>
+<script src="js/stars.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/catalog.js"></script>
 </body>
