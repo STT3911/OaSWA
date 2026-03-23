@@ -94,9 +94,9 @@ a {
 }
 
 .nav__link {
-    color: #111827;
+    color: #364153;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 475;
     transition: color 0.2s;
     text-decoration: none;
     white-space: nowrap;
@@ -1209,27 +1209,35 @@ a.icon-btn {
 
 .cart-page {
     flex: 1;                     
-    position: relative;          
+    width: 1469px;
+    min-height: 871px;          
+    margin: 0 auto;
+    padding-left: 126.5px;
+    padding-right: 126.5px;
+    box-sizing: border-box;
+    position: relative;   
+
 }
 
 .empty-cart {
     width: 1216px;               
     height: 156px;               
-    margin-top: 129px;           
+    margin-top: 60px;           
     margin-left: auto;
     margin-right: auto;        
     text-align: center;          
 }
 
 .empty-cart h2 {
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     font-size: 24px;
     font-weight: 500;
 }
 
 .empty-cart p {
     margin-bottom: 16px;
-    color: #4b5563;              
+    color: #4b5563;  
+    margin-bottom: 30px;            
 }
 
 .empty-cart .btn {
