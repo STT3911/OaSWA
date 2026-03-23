@@ -1206,3 +1206,43 @@ a.icon-btn {
     font-size: 24px;
     color: #000;
 }
+
+.cart-page {
+    flex: 1;                     
+    position: relative;          
+}
+
+.empty-cart {
+    width: 1216px;               
+    height: 156px;               
+    margin-top: 129px;           
+    margin-left: auto;
+    margin-right: auto;        
+    text-align: center;          
+}
+
+.empty-cart h2 {
+    margin-bottom: 8px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.empty-cart p {
+    margin-bottom: 16px;
+    color: #4b5563;              
+}
+
+.empty-cart .btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background-color: #2563eb;   
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.empty-cart .btn:hover {
+    background-color: #1d4ed8; 
+}
