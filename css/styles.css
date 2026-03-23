@@ -1188,19 +1188,6 @@ a.icon-btn {
     margin-bottom: 15px;
 }
 
-.logo-icon {
-    background: linear-gradient(135deg, #6d28d9, #9333ea);
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 20px;
-}
-
 .logo-text {
     font-weight: 650;
     font-size: 24px;
