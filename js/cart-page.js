@@ -3,20 +3,21 @@ function getCart() {
 }
 
 function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart)); 
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartBadge();          
 }
 
 let cart = getCart();
 let discount = 0;
 
-const cartContainer   = document.getElementById('CartContainer');
-const totalPriceEl    = document.getElementById('totalPrice');
+const cartContainer = document.getElementById('CartContainer');
+const totalPriceEl = document.getElementById('totalPrice');
 const subtotalPriceEl = document.getElementById('subtotalPrice');
-const taxPriceEl      = document.getElementById('taxPrice');
-const orderSummary    = document.getElementById('orderSummary');
-const promoInput      = document.getElementById('promoInput');
-const promoBtn        = document.getElementById('promoBtn');
-const promoMssg       = document.getElementById('promoMssg');
+const taxPriceEl = document.getElementById('taxPrice');
+const orderSummary = document.getElementById('orderSummary');
+const promoInput = document.getElementById('promoInput');
+const promoBtn = document.getElementById('promoBtn');
+const promoMssg = document.getElementById('promoMssg');
 
 
 function renderCart() {
@@ -89,12 +90,12 @@ function calculateTotal() {
 
     if (discount > 0) subtotal = subtotal - subtotal * discount;
 
-    const tax   = subtotal * TAX_RATE;
+    const tax = subtotal * TAX_RATE;
     const total = subtotal + tax;
 
     if (subtotalPriceEl) subtotalPriceEl.textContent = '$' + subtotal.toFixed(2);
-    if (taxPriceEl)      taxPriceEl.textContent      = '$' + tax.toFixed(2);
-    if (totalPriceEl)    totalPriceEl.textContent     = '$' + total.toFixed(2);
+    if (taxPriceEl) taxPriceEl.textContent = '$' + tax.toFixed(2);
+    if (totalPriceEl) totalPriceEl.textContent = '$' + total.toFixed(2);
 }
 
 
@@ -120,21 +121,28 @@ function changeQuantity(id, type) {
 
 
 function applyPromo() {
-    const value = promoInput.value.trim().toUpperCase(); // BUGFIX: tuUpperCase → toUpperCase
+    const value = promoInput.value.trim().toUpperCase(); 
 
     if (!value) return;
 
     if (value === 'SAVE10') {
         discount = 0.1;
-        promoMssg.textContent   = 'Promo code applied! 10% discount added.';
-        promoMssg.style.color   = 'green';
+        promoMssg.textContent = 'Promo code applied! 10% discount added.';
+        promoMssg.style.color = 'green';
     } else {
         discount = 0;
-        promoMssg.textContent   = 'Invalid promo code.';
-        promoMssg.style.color   = 'red';
+        promoMssg.textContent = 'Invalid promo code.';
+        promoMssg.style.color = 'red';
     }
 
     calculateTotal();
+}
+
+function updateCartBadge() {
+    const badge = document.querySelector('.cart-badge');
+    if (!badge) return;
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    badge.textContent = totalItems;
 }
 
 
@@ -143,11 +151,13 @@ document.addEventListener('click', (e) => {
     if (!item) return;
     const id = item.dataset.id; 
 
-    if (e.target.closest('.remove-btn'))         removeItem(id);
-    if (e.target.closest('.increase'))           changeQuantity(id, 'increase');
-    if (e.target.closest('.decrease'))           changeQuantity(id, 'decrease');
+    if (e.target.closest('.remove-btn')) removeItem(id);
+    if (e.target.closest('.increase')) changeQuantity(id, 'increase');
+    if (e.target.closest('.decrease')) changeQuantity(id, 'decrease');
 });
+
 
 if (promoBtn) promoBtn.addEventListener('click', applyPromo);
 
 renderCart();
+updateCartBadge();
