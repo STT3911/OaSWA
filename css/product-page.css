@@ -1,0 +1,33 @@
+.breadcrumb { display: flex; gap: 8px; padding: 20px 0; font-size: 14px; color: #6b7280; }
+.breadcrumb__sep { color: #d1d5db; }
+.product-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; padding: 24px 0 48px; align-items: start; }
+
+.slider-viewport { border-radius: 16px; overflow: hidden; background: #f3f4f6; }
+.slider-viewport img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+.slider-thumbs { display: flex; gap: 8px; margin-top: 16px; }
+.slider-thumbs .thumb { flex: 1; aspect-ratio: 4/5; object-fit: cover; border-radius: 16px; cursor: pointer; border: 2px solid transparent; }
+.slider-thumbs .thumb--active { border-color: #2563eb; }
+
+.product-info h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+.product-price-row { display: flex; gap: 16px; margin: 16px 0 24px; align-items: baseline; }
+.product-price { font-size: 32px; font-weight: 700; color: #2563eb; }
+
+.product-highlights__box { background: #eff6ff; border-radius: 10px; padding: 16px; margin-bottom: 24px; }
+.product-highlights__row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #bfdbfe; font-size: 14px; }
+.product-highlights__row:last-child { border-bottom: none; }
+
+.qty-controls { display: inline-flex; align-items: center; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.qty-controls button { width: 40px; height: 40px; border: none; background: #f9fafb; cursor: pointer; }
+.qty-controls span { min-width: 40px; text-align: center; font-weight: 600; }
+
+.btn-add-to-cart { width: 100%; padding: 14px; background: #2563eb; color: #fff; border: none; border-radius: 10px; font-weight: 600; margin-top: 16px; cursor: pointer; }
+
+.accordion { margin-top: 28px; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; }
+.accordion-btn { width: 100%; padding: 16px; font-weight: 600; background: #fafafa; border: none; text-align: left; cursor: pointer; display: flex; justify-content: space-between; }
+.accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.accordion-body--open { max-height: 1000px; border-top: 1px solid #e5e7eb; }
+.spec-row { display: flex; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #f3f4f6; font-size: 14px; }
+
+@media (max-width: 900px) {
+    .product-layout { grid-template-columns: 1fr; gap: 32px; }
+}
