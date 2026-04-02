@@ -40,10 +40,30 @@
         <p>Discover our curated collection of high-quality tech products</p>
     </div>
     
+    <div class="catalog-toolbar">
+                    <span id="products-count"></span>
+                    <div class="sort">
+                        <label class="sort__label" for="sort-select">Sort by:</label>
+                        <div class="sort-select-wrap">
+                            <select id="sort-select" class="sort-select" onchange="applySortAndFilter()">
+                                <option value="name-asc">Name (A-Z)</option>
+                                <option value="name-desc">Name (Z-A)</option>
+                                <option value="price-asc">Price (Low to High)</option>
+                                <option value="price-desc">Price (High to Low)</option>
+                            </select>
+                            <span class="sort-select__chev" aria-hidden="true">
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
     <div class="catalog-layout">
 
         <aside class="filters">
-            <h3 class="filters__title">Filters</h3>
+            <h3 class="filters__title" style="display: flex; align-items: center; gap: 8px;">
+             <img src="icons/filters.svg" alt="filters" width="20" height="20">Filters
+            </h3>
 
             <div class="filter-group">
                 <h4 class="filter-group__title">Rating</h4>
@@ -69,23 +89,7 @@
         </aside>
 
         <div class="catalog-right">
-            <div class="catalog-toolbar">
-                <span id="products-count"></span>
-                <div class="sort">
-                    <label class="sort__label" for="sort-select">Sort by:</label>
-                    <div class="sort-select-wrap">
-                        <select id="sort-select" class="sort-select" onchange="applySortAndFilter()">
-                            <option value="name-asc">Name (A-Z)</option>
-                            <option value="name-desc">Name (Z-A)</option>
-                            <option value="price-asc">Price (Low to High)</option>
-                            <option value="price-desc">Price (High to Low)</option>
-                        </select>
-                        <span class="sort-select__chev" aria-hidden="true">
-                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            
             <div class="products-grid" id="products-grid"></div>
         </div>
     </div>
