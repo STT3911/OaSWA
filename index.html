@@ -72,16 +72,20 @@
                 <label class="filter-option"><input type="radio" name="rating" value="3"> 3+ Stars</label>
             </div>
 
-            <div class="filter-group">
+                        <div class="filter-group">
                 <h4 class="filter-group__title">Price Range</h4>
-                <div class="price-range-single">
-                    <div class="price-range-single__rail" aria-hidden="true"></div>
-                    <div class="price-range-single__fill" id="price-range-fill" aria-hidden="true"></div>
-                    <input type="range" id="price-range" class="price-range-single__input" min="0" max="3000" step="1" value="3000" aria-label="Maximum price">
+                
+                <div class="dual-slider-container">
+                    <div class="dual-slider-track"></div>
+                    <div class="dual-slider-fill" id="slider-fill"></div>
+                    
+                    <input type="range" min="0" max="3000" value="0" id="slider-min" class="dual-slider-input">
+                    <input type="range" min="0" max="3000" value="3000" id="slider-max" class="dual-slider-input">
                 </div>
+
                 <div class="price-labels">
-                    <span>$0</span>
-                    <span id="price-max">$3000</span>
+                    <span id="price-min-label">$0</span>
+                    <span id="price-max-label">$3000</span>
                 </div>
             </div>
 
