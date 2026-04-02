@@ -16,9 +16,9 @@ a {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1536px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 0 32px;
 }
 
 .header {
@@ -38,14 +38,13 @@ a {
 }
 
 .header .container {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    display: flex;
     align-items: center;
-    height: 64px;
-    max-width: 1216px;
+    justify-content: space-between;
+    min-height: 64px;
+    max-width: 1472px;
     margin: 0 auto;
-    padding: 0 24px;
-    column-gap: 16px;
+    padding: 0 32px;
 }
 
 .header .logo {
@@ -73,7 +72,7 @@ a {
 }
 
 .logo-icon {
-    background: linear-gradient(135deg, #6d28d9, #9333ea);
+    background-image: linear-gradient(to right bottom, #155DFC 0%, #9810FA 100%);
     color: white;
     width: 40px;
     height: 40px;
@@ -90,7 +89,7 @@ a {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 64px;
 }
 
 .nav__link {
@@ -187,10 +186,11 @@ a.icon-btn {
 }
 
 .catalog-title h1 {
-    font-size: 26px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 500;
     color: #111827;
-    letter-spacing: -0.02em;
+    line-height: 36px;
+	margin: 0px 0px 8px;
 }
 
 .catalog-title p{
@@ -202,20 +202,38 @@ a.icon-btn {
 .catalog-layout {
     display: flex;
     gap: 32px;
-    padding-bottom: 60px;
     align-items: flex-start;
+    padding: 24px;
 }
 
 .filters {
-    width: 252px;
+    width: 256px;
+    height: 416px;
     flex-shrink: 0;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 24px;
+    position: sticky;
+    top: 96px;
+}
+aside.filters svg {
+    box-sizing: border-box;
+    columns: auto;
+    fill: none;
+    offset: normal;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
 }
 
 .filters__title {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin: 0px 0px 24px;
     color: #111827;
+    display: flex;
 }
 
 .filter-group {
@@ -446,12 +464,14 @@ a.icon-btn {
 .products-grid{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 24px;
 }
 
 .products-card,
 .product-card {
     border: 1px solid #e8eaed;
+    width: 378.7px;
+    height: 505.7px;
     border-radius: 12px;
     overflow: hidden;
     background: #fff;
@@ -473,8 +493,8 @@ a.icon-btn {
 }
 
 .product-card img {
-    width: 100%;
-    height: 180px;
+    width: 395.5px;
+    height: 395.5px;
     object-fit: cover;
     display: block;
     transition: transform 0.35s ease;
