@@ -1,4 +1,6 @@
 const PRICE_MAX = 3000
+const MIN_GAP = 100
+
 
 function renderProducts(list) {
   const grid = document.getElementById('products-grid')
@@ -33,25 +35,53 @@ function renderProducts(list) {
     .join('')
 }
 
-function updatePriceRangeFill() {
-  const range = document.getElementById('price-range')
-  const fill = document.getElementById('price-range-fill')
-  const label = document.getElementById('price-max')
-  if (!range || !fill) return
-  const v = parseFloat(range.value)
-  fill.style.width = (v / PRICE_MAX) * 100 + '%'
-  if (label) label.textContent = '$' + v
+function updateSlider() {
+  const minSlider = document.getElementById(`slider-min`);
+  const maxSlider = document.getElementById(`slider-max`);
+  const sliderFill = document.getElementById(`slider-fill`);
+  const minLabel = document.getElementById(`price-min-label`);
+  const maxLabel = document.getElementById(`price-max-label`);
+
+  if (!minSlider || !maxSlider || !sliderFill) return;
+  let minVal = parseInt(minSlider.value);
+  let maxVal = parseInt(maxSlider.value);
+
+  if (maxVal - minVal < MIN_GAP) {
+    if (document.activeElement === minSlider) {
+      minSlider.value = maxVal - MIN_GAP;
+      minVal = maxVal - MIN_GAP;
+    } else {
+      maxSlider.value = minVal + MIN_GAP;
+      maxVal = minVal + MIN_GAP;
+    }
+  }
+
+  if (minLabel) minLabel.textContent = '$' + minVal;
+  if (maxLabel) maxLabel.textContent = '$' + maxVal;
+
+  const percentMin = (minVal / PRICE_MAX) * 100;
+  const percentMax = (maxVal / PRICE_MAX) * 100;
+
+  sliderFill.style.left = percentMin + '%';
+  sliderFill.style.width = (percentMax - percentMin) + '%';
 }
 
 function applySortAndFilter() {
-  const sortValue = document.getElementById('sort-select').value
-  const maxPrice = parseFloat(document.getElementById('price-range').value)
-  const ratingInput = document.querySelector('input[name="rating"]:checked')
-  const minRating = ratingInput ? parseFloat(ratingInput.value) : 0
+  const sortSelect = document.getElementById(`sort-select`);
+  const sortValue = sortSelect ? sortSelect.value : `name-asc`;
+
+  const minSlider = document.getElementById(`slider-min`);
+  const maxSlider = document.getElementById(`slider-max`);
+
+  const minPrice = minSlider ? parseFloat(minSlider.value) : 0;
+  const maxPrice = maxSlider ? parseFloat(maxSlider.value) : PRICE_MAX;
+
+  const ratingInput = document.querySelector(`input[name="rating"]:checked`);
+  const minRating = ratingInput ? parseFloat(ratingInput.value) : 0;
 
   let result = products.filter(p => {
-    return p.price <= maxPrice && p.rating >= minRating
-  })
+    return p.price >= minPrice && p.price <= maxPrice && p.rating >= minRating;
+  });
 
   if (sortValue === 'name-asc') {
     result.sort((a, b) => a.name.localeCompare(b.name))
@@ -66,28 +96,37 @@ function applySortAndFilter() {
 }
 
 function clearFilters() {
-  const range = document.getElementById('price-range')
-  if (range) range.value = String(PRICE_MAX)
-  updatePriceRangeFill()
-  const checked = document.querySelector('input[name="rating"]:checked')
+  const minSlider = document.getElementById('slider-min');
+  const maxSlider = document.getElementById(`slider-max`);
+
+  if (minSlider && maxSlider) {
+    minSlider.value = 0;
+    maxSlider.value = String(PRICE_MAX);
+  }
+  updateSlider();
+
+  const checked = document.querySelector(`input[name="rating"]:checked`);
   if (checked) checked.checked = false
-  applySortAndFilter()
+  applySortAndFilter();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  const range = document.getElementById('price-range')
-  if (range) {
-    range.addEventListener('input', function () {
-      updatePriceRangeFill()
-      applySortAndFilter()
-    })
-  }
+  const minSlider = document.getElementById(`slider-min`);
+  const maxSlider = document.getElementById('slider-max');
 
-  updatePriceRangeFill()
+  [minSlider, maxSlider].forEach(slider =>  {
+    if (slider) {
+      slider.addEventListener('input', function () {
+        updateSlider()
+        applySortAndFilter()
+      });
+    }
+  });
 
+  updateSlider();
   document.querySelectorAll('input[name="rating"]').forEach(input => {
-    input.addEventListener('change', applySortAndFilter)
-  })
+    input.addEventListener('change', applySortAndFilter);
+  });
 
   renderProducts(products)
 })
