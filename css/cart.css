@@ -1,3 +1,15 @@
+.empty-cart {
+    width: 100%;
+    margin: 0 auto;
+    min-height: 150px;
+    padding: 64px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .empty-cart h2 {font-weight: 500; min-width: 215px; min-height: 36px; margin-bottom: 16px; color: #0A0A0A;}
 .empty-cart p {color: #374151; min-width: 317px; min-height: 24px; margin-bottom: 32px;}
 .empty-cart a {font-weight: 600; min-width: 144px; min-height: 24px;}
