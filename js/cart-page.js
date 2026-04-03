@@ -117,11 +117,7 @@ function applyPromo() {
     discount = 0.1
     promoMssg.textContent = 'Promo code applied! 10% discount added.'
     promoMssg.style.color = 'green'
-  } else {
-    discount = 0
-    promoMssg.textContent = 'Invalid promo code.'
-    promoMssg.style.color = 'red'
-  }
+  } 
   calculateTotal()
 }
 
