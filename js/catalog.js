@@ -111,8 +111,16 @@ function clearFilters() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  const filterToggle = document.querySelector('.catalog-filter-btn')
+  const filters = document.querySelector('.filters')
   const minSlider = document.getElementById(`slider-min`);
   const maxSlider = document.getElementById('slider-max');
+
+  if (filterToggle && filters) {
+    filterToggle.addEventListener('click', function () {
+      filters.classList.toggle('filters--open')
+    })
+  }
 
   [minSlider, maxSlider].forEach(slider =>  {
     if (slider) {

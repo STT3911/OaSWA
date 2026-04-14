@@ -8,191 +8,186 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/catalog.css">
     <link rel="stylesheet" href="css/product-page.css">
 </head>
 <body>
     <header class="header">
-      <div class="container">
-        <a href="index.html" class="logo">
-            <span class="logo-icon">T</span>
-            TechStore
-        </a>
-        <nav class="nav" aria-label="Main">
-          <a href="index.html" class="nav__link">Products</a>
-          <a href="#" class="nav__link">Categories</a>
-          <a href="#" class="nav__link">Deals</a>
-          <a href="#" class="nav__link">About</a>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">T</span>
+                <span class="logo-wordmark">TechStore</span>
+            </a>
+            <nav class="nav" aria-label="Main">
+                <a href="index.html" class="nav__link">Products</a>
+                <a href="#" class="nav__link">Categories</a>
+                <a href="#" class="nav__link">Deals</a>
+                <a href="#" class="nav__link">About</a>
+            </nav>
+            <div class="header-icons">
+                <button type="button" class="icon-btn" aria-label="Search">
+                    <svg class="icon-btn__svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </button>
+                <a href="cart.html" class="icon-btn cart-link" aria-label="Cart">
+                    <svg class="icon-btn__svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span class="cart-badge" hidden></span>
+                </a>
+                <button type="button" class="icon-btn menu-btn" aria-label="Menu">
+                    <svg class="icon-btn__svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Products</a>
+            <span class="breadcrumb__sep" aria-hidden="true">&rsaquo;</span>
+            <span id="breadcrumb-category"></span>
+            <span class="breadcrumb__sep" aria-hidden="true">&rsaquo;</span>
+            <span id="breadcrumb-name"></span>
         </nav>
-        <div class="header-icons">
-          <button type="button" class="icon-btn" aria-label="Search">
-            <svg class="icon-btn__svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          </button>
-          <a href="cart.html" class="icon-btn cart-link" aria-label="Cart">
-            <svg class="icon-btn__svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-            <span class="cart-badge">0</span>
-          </a>
-        </div>
-    </div>
-  </header>
 
-
-<main class="container">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html">Products</a>
-        <span class="breadcrumb__sep" aria-hidden="true">›</span>
-        <span id="breadcrumb-category"></span>
-        <span class="breadcrumb__sep" aria-hidden="true">›</span>
-        <span id="breadcrumb-name"></span>
-    </nav>
-
-    <div class="product-layout">
-
-        <div class="product-gallery"> 
-            <div class="slider">
-                <div class="slider-viewport">
-                    <img id="slider-main" src="" alt="">
+        <div class="product-layout">
+            <div class="product-gallery">
+                <div class="slider">
+                    <div class="slider-viewport">
+                        <img id="slider-main" src="" alt="">
+                    </div>
+                    <button type="button" class="slider-btn slider-btn--prev" id="slider-prev" onclick="changeSlide(-1)" aria-label="Previous image">
+                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M7 1 1 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <button type="button" class="slider-btn slider-btn--next" id="slider-next" onclick="changeSlide(1)" aria-label="Next image">
+                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="m1 1 6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
                 </div>
-                <button type="button" class="slider-btn slider-btn--prev" onclick="changeSlide(-1)" aria-label="Previous image">
-                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M7 1 1 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="slider-thumbs" id="slider-thumbs"></div>
+            </div>
+
+            <div class="product-info">
+                <div>
+                    <h1 id="product-name"></h1>
+                    <div id="product-rating"></div>
+                    <p id="product-reviews"></p>
+                    <div class="product-price-row">
+                        <span class="product-price" id="product-price"></span>
+                        <span class="product-free-shipping">Free shipping</span>
+                    </div>
+                </div>
+
+                <div class="product-highlights" id="product-highlights"></div>
+
+                <div class="product-description">
+                    <h2>Description</h2>
+                    <p id="product-description"></p>
+                </div>
+
+                <div class="product-quantity">
+                    <span class="product-quantity__label">Quantity</span>
+                    <div class="qty-controls">
+                        <button type="button" onclick="changeQty(-1)" aria-label="Decrease quantity">-</button>
+                        <span id="qty-value">1</span>
+                        <button type="button" onclick="changeQty(1)" aria-label="Increase quantity">+</button>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-add-to-cart" id="add-to-cart-btn" onclick="handleAddToCart()">
+                    <span class="btn-add-to-cart__icon" aria-hidden="true">&#128722;</span>
+                    <span>Add to Cart</span>
                 </button>
-                <button type="button" class="slider-btn slider-btn--next" onclick="changeSlide(1)" aria-label="Next image">
-                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="m1 1 6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-        </div>
-        <div class="slider-thumbs" id="slider-thumbs"></div>
-    </div>
 
-    <div class="product-info">
-        <h1 id="product-name"></h1>
-        <div id="product-rating"></div>
-        <p id="product-reviews"></p>
-        <div class="product-price-row">
-            <span class="product-price" id="product-price"></span>
-            <span class="product-free-shipping">Free shipping</span>
-        </div>
-
-        <div class="product-highlights" id="product-highlights"></div>
-
-        <div class="product-description">
-            <h3>Description</h3>
-            <p id="product-description"></p>
-        </div>
-        <div class="product-quantity">
-            <span class="product-quantity__label">Quantity</span>
-            <div class="qty-controls">
-                <button type="button" onclick="changeQty(-1)" aria-label="Decrease quantity">−</button>
-                <span id="qty-value">1</span>
-                <button type="button" onclick="changeQty(1)" aria-label="Increase quantity">+</button>
+                <div class="accordion">
+                    <button type="button" class="accordion-btn" onclick="toggleAccordion()" aria-expanded="false" id="accordion-toggle">
+                        Technical Specifications
+                        <span class="accordion-icon" aria-hidden="true">
+                            <svg class="accordion-icon__chev" width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1 7 7l6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-body" id="accordion-body"></div>
+                </div>
             </div>
         </div>
-        <button type="button" class="btn-add-to-cart" id="add-to-cart-btn" onclick="handleAddToCart()">
-            <span class="btn-add-to-cart__icon" aria-hidden="true">&#128722;</span>
-            <span>Add to Cart</span>
-        </button>
 
-        <div class="accordion">
-            <button type="button" class="accordion-btn" onclick="toggleAccordion()" aria-expanded="false" id="accordion-toggle">
-                Technical Specifications
-                <span class="accordion-icon" aria-hidden="true">
-                    <svg class="accordion-icon__chev" width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1 7 7l6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-            </button>
-            <div class="accordion-body" id="accordion-body"></div>
+        <div class="related">
+            <h2>Related Products</h2>
+            <div class="products-grid" id="related-grid"></div>
         </div>
-        </div>
-    </div>
-    <div class="related">
-        <h2>Related Products</h2>
-        <div class="products-grid" id="related-grid"></div>
-    </div>
-</main>
-<footer class = "footer">
+    </main>
+
+    <footer class="footer">
         <div>
-            <div class = "footer-brand">
-                <div class="footer-logo">
-                    <div class="logo-icon">T</div>
-                    <span class="logo-text">TechStore</span>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">T</div>
+                        <span class="logo-text">TechStore</span>
+                    </div>
+                    <p>Your trusted destination for premium electronics and tech accessories. Quality products, competitive prices, exceptional service.</p>
+                    <div class="footer-social">
+                        <a href="#" class="footer-social__link" aria-label="Facebook">
+                            <svg class="footer-social__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3V3z"/></svg>
+                        </a>
+                        <a href="#" class="footer-social__link" aria-label="Twitter">
+                            <svg class="footer-social__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 12 7.5v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                        </a>
+                        <a href="#" class="footer-social__link" aria-label="Instagram">
+                            <svg class="footer-social__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37a4 4 0 1 1-3.37-3.37 4 4 0 0 1 3.37 3.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="footer-social__link" aria-label="YouTube">
+                            <svg class="footer-social__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="3.5" ry="3.5"/><polygon points="10 8.8 16 12 10 15.2 10 8.8"/></svg>
+                        </a>
+                    </div>
                 </div>
-                <p>
-                    Your trusted destination for premium electronics and tech accessories. Quality products, competitive prices, exceptional service.
-                </p>
-                <div class="footer-social">
-                    <a href="#" class="footer-social__link" aria-label="Facebook">
-                        <svg class="footer-social__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3V3z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="footer-social__link" aria-label="Twitter">
-                        <svg class="footer-social__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 12 7.5v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="footer-social__link" aria-label="Instagram">
-                        <svg class="footer-social__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                            <path d="M16 11.37a4 4 0 1 1-3.37-3.37 4 4 0 0 1 3.37 3.37z"/>
-                            <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="footer-social__link" aria-label="YouTube">
-                        <svg class="footer-social__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="3" y="5.5" width="18" height="13" rx="3.5" ry="3.5"/>
-                            <polygon points="10 8.8 16 12 10 15.2 10 8.8"/>
-                        </svg>
-                    </a>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Shop All Products</a></li>
+                        <li><a href="#">Special Deals</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-service">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Shipping Information</a></li>
+                        <li><a href="#">Returns &amp; Exchanges</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                    <div class="footer-service__support">
+                        <p>Customer Support:</p>
+                        <p><strong>1-800-TECH-SHOP</strong></p>
+                        <p>support@techstore.com</p>
+                    </div>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get special offers, free giveaways, and updates.</p>
+                    <form class="footer-newsletter__form">
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
                 </div>
             </div>
 
-            <div class = "footer-links">
-                <h3>Quick Links</h3>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TechStore. All rights reserved.</p>
                 <ul>
-                    <a href = "#">Shop All Products</a><br>
-                    <a href = "#">Special Deals</a><br>
-                    <a href = "#">About Us</a><br>
-                    <a href = "#">Contact Support</a>
-                </ul>
-            </div>
-
-            <div class = "footer-service">
-                <h3>Customer Service</h3>
-                <ul>
-                    <a href = "#">Shipping Information</a><br>
-                    <a href = "#">Return & Exchanges</a><br>
-                    <a href = "#">FAQ</a><br>
-                    <a href = "#">Track Order</a>
-                </ul>
-                <p>
-                    Customer Support:<br>
-                    <strong style="font-weight: 500; color: #000000;">1-800-TECH-SHOP</strong><br>
-                    support@techstore.com
-                </p>
-            </div>
-
-            <div class = "footer-newsletter">
-                <h3>Newsletter</h3>
-                <p>
-                    Subscribe to get special offers, free giveaway, and updates.
-                </p>
-                <input type = "email" name = "email" placeholder = "Enter your email" required>
-                <br>
-                <button type = "submit">Subscribe</button>
-            </div> 
-
-            <div class ="footer-bottom">
-                <p align="center">
-                    © 2026 TechStore. All rights reserved.
-                </p>    
-                <ul align = "center">
-                    <a href = "#"> Privacy Policy</a>
-                    <a href = "#"> Terms of Service</a>
-                    <a href = "#"> Cookie Policy</a>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
                 </ul>
             </div>
         </div>
     </footer>
-<script src="js/data.js"></script>
-<script src="js/stars.js"></script>
-<script src="js/cart.js"></script>
-<script src="js/product.js"></script>
+
+    <script src="js/data.js"></script>
+    <script src="js/stars.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/product.js"></script>
 </body>
 </html>

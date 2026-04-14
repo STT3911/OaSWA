@@ -26,6 +26,8 @@ function updateBadge() {
   const cart = getCart()
   const total = cart.reduce((sum, item) => sum + (item.quantity  || 0), 0)
   const badge = document.querySelector('.cart-badge')
-  if (badge) badge.textContent = total
+  if (!badge) return
+  badge.textContent = total > 0 ? String(total) : ''
+  badge.hidden = total === 0
 }
 document.addEventListener('DOMContentLoaded', updateBadge)

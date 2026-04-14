@@ -8,6 +8,39 @@ let currentSlide = 0
 let qty = 1
 let galleryImages = []
 
+function getSliderAlt(name, index, total) {
+  if (!name) return ''
+  if (!total || total <= 1) return name
+  return `${name} - Image ${index + 1}`
+}
+
+function updateSliderUI() {
+  if (!product) return
+
+  const mainImg = document.getElementById('slider-main')
+  const prevBtn = document.getElementById('slider-prev')
+  const nextBtn = document.getElementById('slider-next')
+  const hasMultipleImages = galleryImages.length > 1
+
+  if (mainImg && galleryImages.length > 0) {
+    mainImg.src = galleryImages[currentSlide]
+    mainImg.alt = getSliderAlt(product.name, currentSlide, galleryImages.length)
+  }
+
+  if (prevBtn) prevBtn.hidden = !hasMultipleImages
+  if (nextBtn) nextBtn.hidden = !hasMultipleImages
+
+  document.querySelectorAll('.thumb-btn').forEach((button, index) => {
+    const active = index === currentSlide
+    button.setAttribute('aria-current', active ? 'true' : 'false')
+  })
+
+  document.querySelectorAll('.thumb').forEach((thumb, index) => {
+    thumb.classList.toggle('thumb--active', index === currentSlide)
+    thumb.alt = getSliderAlt(product.name, index, galleryImages.length)
+  })
+}
+
 function normalizeProductImages(images) {
   if (images == null) return []
   if (typeof images === 'string') {
@@ -43,12 +76,16 @@ document.addEventListener('DOMContentLoaded', function () {
   const highlightsEl = document.getElementById('product-highlights')
   highlightsEl.innerHTML =
     '<div class="product-highlights__box">' +
+    '<h3 class="product-highlights__title">Key Highlights</h3>' +
+    '<div class="product-highlights__list">' +
     Object.entries(product.specs)
+      .slice(0, 3)
       .map(
         ([key, value]) =>
-          `<div class="product-highlights__row"><span class="product-highlights__key">${key}</span><span class="product-highlights__val">${value}</span></div>`
+          `<div class="product-highlights__row"><span class="product-highlights__dot" aria-hidden="true"></span><span><span class="product-highlights__key">${key}:</span> ${value}</span></div>`
       )
       .join('') +
+    '</div>' +
     '</div>'
 
   const mainImg = document.getElementById('slider-main')
@@ -57,13 +94,15 @@ document.addEventListener('DOMContentLoaded', function () {
     mainImg.removeAttribute('src')
     mainImg.alt = product.name
     thumbsContainer.innerHTML = ''
+    updateSliderUI()
   } else {
     currentSlide = 0
-    mainImg.src = galleryImages[0]
-    mainImg.alt = product.name
-    thumbsContainer.innerHTML = galleryImages.map((img, index) => `
-    <img src="${img}" alt="thumb ${index}" class="thumb ${index === 0 ? 'thumb--active' : ''}" onclick="goToSlide(${index})">
-  `).join('')
+    thumbsContainer.innerHTML = galleryImages.length > 1 ? galleryImages.map((img, index) => `
+    <button type="button" class="thumb-btn" onclick="goToSlide(${index})" aria-label="Show image ${index + 1}">
+      <img src="${img}" alt="" class="thumb ${index === 0 ? 'thumb--active' : ''}">
+    </button>
+  `).join('') : ''
+    updateSliderUI()
   }
 
   const accordionBody = document.getElementById('accordion-body')
@@ -74,7 +113,9 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
   `).join('')
 
-  const related = products.filter(p => p.category === product.category && p.id !== product.id)
+  const related = products
+    .filter(p => p.category === product.category && p.id !== product.id)
+    .slice(0, 3)
   const relatedGrid = document.getElementById('related-grid')
   relatedGrid.innerHTML = related.map(p => {
     const relImg = normalizeProductImages(p.images)[0] || ''
@@ -108,10 +149,7 @@ function goToSlide(index) {
   if (index < 0) index = images.length - 1
   if (index >= images.length) index = 0
   currentSlide = index
-  document.getElementById('slider-main').src = images[currentSlide]
-  document.querySelectorAll('.thumb').forEach((t, i) => {
-    t.classList.toggle('thumb--active', i === currentSlide)
-  })
+  updateSliderUI()
 }
 
 function changeQty(direction) {
