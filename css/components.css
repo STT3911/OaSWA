@@ -15,18 +15,54 @@
     display: inline-flex;
     align-items: center;
     gap: 2px;
-    font-size: 16px;
     line-height: 1;
 }
 
-.star { display: inline-block; line-height: 1; }
-.star.full, .star--full { color: #fdc700; }
-.star.empty, .star--empty { color: #d1d5db; }
-.star--half { position: relative; width: 1em; height: 1em; }
-.star__half-bg { position: absolute; left: 0; top: 0; color: #d1d5db; line-height: 1; }
+.star {
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.star__icon {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.star__icon path {
+    fill: currentColor;
+}
+
+.star.full, .star--full { color: #FDC700; }
+.star.empty, .star--empty { color: #e5e7eb; }
+.star--half {
+    position: relative;
+}
+
+.star__half-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: #d1d5db;
+    line-height: 1;
+}
+
 .star__half-fg {
-    position: absolute; left: 0; top: 0; width: 50%;
-    overflow: hidden; color: #fdc700; line-height: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    color: #FDC700;
+    line-height: 1;
 }
 
 .rating-num {

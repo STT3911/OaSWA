@@ -122,13 +122,24 @@
     margin-bottom: 12px;
 }
 
+#product-rating {
+    display: flex;
+    align-items: center;
+}
+
 #product-rating .stars-inline {
-    font-size: 18px;
+    gap: 3px;
+}
+
+#product-rating .star {
+    width: 20px;
+    height: 20px;
 }
 
 #product-rating .rating-num {
     font-size: 14px;
     color: #6b7280;
+    margin-left: 10px;
 }
 
 #product-reviews {
@@ -251,6 +262,7 @@
     border-radius: 8px;
     background: #2563eb;
     color: #fff;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -261,8 +273,14 @@
 }
 
 .btn-add-to-cart__icon {
-    font-size: 18px;
-    line-height: 1;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.btn-add-to-cart__icon svg {
+    width: 100%;
+    height: 100%;
 }
 
 .accordion {
