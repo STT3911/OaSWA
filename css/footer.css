@@ -29,7 +29,7 @@
 
 .footer-brand p {
     margin-bottom: 16px;
-    color: #6b7280;
+    color: #4A5565;
     font-size: 14px;
 }
 
@@ -62,7 +62,7 @@
 
 .footer h3 {
     margin-bottom: 16px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .footer a {
-    color: #6b7280;
+    color: #4A5565;
     transition: color 0.2s ease;
 }
 
@@ -102,7 +102,7 @@
 
 .footer-newsletter p {
     margin-bottom: 16px;
-    color: #6b7280;
+    color: #4A5565;
     font-size: 14px;
 }
 

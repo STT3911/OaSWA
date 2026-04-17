@@ -1,0 +1,170 @@
+.about-page {
+    padding: 32px 0;
+    background: #f9fafb;
+}
+
+.about-page h1,
+.about-page h2,
+.about-page h3 {
+    font-weight: 500;
+}
+
+.about-page h1 {
+    font-size: 24px;
+    line-height: 1.5;
+}
+
+.about-page h2 {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.about-page h3 {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.about-hero {
+    margin-bottom: 48px;
+    text-align: center;
+}
+
+.about-hero h1 {
+    margin-bottom: 16px;
+}
+
+.about-hero p {
+    max-width: 768px;
+    margin: 0 auto;
+    color: #4b5563;
+    font-size: 18px;
+    line-height: 1.56;
+}
+
+.about-panel {
+    padding: 32px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.about-story {
+    margin-bottom: 48px;
+}
+
+.about-story h2 {
+    margin-bottom: 16px;
+}
+
+.about-story__body {
+    color: #374151;
+}
+
+.about-story__body p + p {
+    margin-top: 16px;
+}
+
+.about-values {
+    margin-bottom: 48px;
+}
+
+.about-values h2 {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.about-values__grid {
+    display: grid;
+    gap: 24px;
+}
+
+.about-value-card {
+    padding: 24px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+    text-align: center;
+}
+
+.about-value-card__icon-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.about-value-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    background: #dbeafe;
+    color: #2563eb;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.about-value-card h3 {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.about-value-card p {
+    color: #4b5563;
+    font-size: 14px;
+    line-height: 1.43;
+}
+
+.about-contact h2 {
+    margin-bottom: 24px;
+}
+
+.about-contact__grid {
+    display: grid;
+    gap: 24px;
+}
+
+.about-contact__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.about-contact__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.about-contact__icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.about-contact__content h3 {
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.about-contact__content p {
+    color: #4b5563;
+    font-size: 14px;
+    line-height: 1.43;
+}
+
+@media (min-width: 768px) {
+    .about-values__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .about-contact__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
