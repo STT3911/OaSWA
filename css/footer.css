@@ -50,8 +50,12 @@
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.footer-social__link:hover {
+.footer .footer-social__link:hover {
     background: #2563eb;
+    color: #fff;
+}
+
+.footer .footer-social__link:hover .footer-social__icon {
     color: #fff;
 }
 
@@ -82,7 +86,7 @@
     transition: color 0.2s ease;
 }
 
-.footer a:hover {
+.footer a:not(.footer-social__link):hover {
     color: #2563eb;
 }
 
