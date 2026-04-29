@@ -1,94 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechStore &mdash; Premium Electronics</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/cart.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart — TechStore</title>
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
-    <div id="site-header"></div>
+<div class="page-wrapper">
 
-    <main class="cart-page">
-        <div class="cart-wrapper">
-            <h1 class="cart-title">Shopping Cart</h1>
-            <div class="cart-layout">
-                <div id="CartContainer" class="cart-items-section"></div>
+  <header class="site-header"></header>
 
-                <aside class="cart-sidebar">
-                    <div class="cart-sidebar__inner">
-                        <div class="order-summary" id="orderSummary">
-                            <h2>Order Summary</h2>
+  <main class="cart-main">
+    <div class="container">
 
-                            <div class="summary-rows">
-                                <div class="summary-row">
-                                    <span>Subtotal</span>
-                                    <span id="subtotalPrice">$0.00</span>
-                                </div>
-                                <div class="summary-row summary-row--discount" id="discountRow" hidden>
-                                    <span id="discountLabel">Discount</span>
-                                    <span id="discountPrice">-$0.00</span>
-                                </div>
-                                <div class="summary-row">
-                                    <span>Tax (8%)</span>
-                                    <span id="taxPrice">$0.00</span>
-                                </div>
-                                <div class="summary-row summary-total">
-                                    <span>Total</span>
-                                    <span id="totalPrice" class="total-highlight">$0.00</span>
-                                </div>
-                            </div>
+      <h1 class="cart-title">Shopping Cart</h1>
 
-                            <div class="promo-section">
-                                <label class="promo-label" for="promoInput">Promo Code</label>
-                                <div class="promo-input-row">
-                                    <input type="text" id="promoInput" class="promo-input" placeholder="Enter code">
-                                    <button type="button" id="promoBtn" class="promo-apply-btn">Apply</button>
-                                </div>
-                                <p id="promoMssg" class="promo-hint">Try code "SAVE10" for 10% off</p>
-                            </div>
+      <div class="cart-layout">
 
-                            <button class="checkout-btn" type="button">Proceed to Checkout</button>
-                        </div>
+        <!-- Items -->
+        <div class="cart-items" id="cartItems"></div>
 
-                        <div class="shipping-info-box">
-                            <h3>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                                Shipping Information
-                            </h3>
-                            <div class="shipping-info-box__content">
-                                <div class="shipping-row shipping-row--address">
-                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                    <div class="shipping-row__text">
-                                        <p class="shipping-row__label">Delivery Address</p>
-                                        <p>123 Tech Street</p>
-                                        <p>San Francisco, CA 94105</p>
-                                    </div>
-                                </div>
-                                <div class="shipping-row shipping-row--timing">
-                                    <p class="shipping-row__label">Estimated Delivery</p>
-                                    <p class="shipping-row__muted">3-5 business days</p>
-                                    <p class="free-shipping-note">Free shipping on orders over $50</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
+        <!-- Right column -->
+        <div class="cart-sidebar">
+        <aside class="cart-summary">
+          <h2 class="summary-title">Order Summary</h2>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="summarySubtotal">$0.00</span>
+          </div>
+          <div class="summary-row summary-discount" id="discountRow" style="display:none">
+            <span id="discountLabel">Discount</span>
+            <span id="summaryDiscount" class="discount-value"></span>
+          </div>
+          <div class="summary-row">
+            <span>Tax (8%)</span>
+            <span id="summaryTax">$0.00</span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <span id="summaryTotal">$0.00</span>
+          </div>
+
+          <div class="promo-section">
+            <label class="promo-label">Promo Code</label>
+            <div class="promo-row">
+              <input type="text" id="promoInput" class="promo-input" placeholder="Enter code">
+              <button class="promo-btn" id="promoBtn">Apply</button>
             </div>
+            <p class="promo-hint" id="promoHint">Try code "SAVE10" for 10% off</p>
+          </div>
+
+          <button class="checkout-btn">Proceed to Checkout</button>
+
+        </aside>
+
+        <div class="shipping-info">
+          <div class="shipping-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13" rx="2"></rect>
+              <path d="M16 8h4l3 5v3h-7V8z"></path>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+            Shipping Information
+          </div>
+
+          <div class="shipping-address">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <div>
+              <p class="shipping-address-label">Delivery Address</p>
+              <p>123 Tech Street</p>
+              <p>San Francisco, CA 94105</p>
+            </div>
+          </div>
+
+          <div class="shipping-delivery">
+            <p class="shipping-delivery-label">Estimated Delivery</p>
+            <p>3-5 business days</p>
+            <p class="shipping-free">Free shipping on orders over $50</p>
+          </div>
         </div>
-    </main>
+        </div><!-- /.cart-sidebar -->
 
-    <div id="site-footer"></div>
+      </div>
+    </div>
+  </main>
 
-    <script src="js/header.js"></script>
-    <script src="js/footer.js"></script>
-    <script src="js/layout.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/cart-page.js"></script>
+  <footer class="site-footer"></footer>
+</div>
+
+<script src="js/loadComponents.js"></script>
+<script src="js/header.js"></script>
+<script src="js/codeDeals.js"></script>
+<script src="js/cart.js"></script>
 </body>
 </html>

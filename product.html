@@ -1,108 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechStore</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/catalog.css">
-    <link rel="stylesheet" href="css/product-page.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — TechStore</title>
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/product.css">
 </head>
 <body>
-    <div id="site-header" data-page="products"></div>
+<div class="page-wrapper">
 
-    <main class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="index.html">Products</a>
-            <span class="breadcrumb__sep" aria-hidden="true">&rsaquo;</span>
-            <span id="breadcrumb-category"></span>
-            <span class="breadcrumb__sep" aria-hidden="true">&rsaquo;</span>
-            <span id="breadcrumb-name"></span>
-        </nav>
+  <header class="site-header"></header>
 
-        <div class="product-layout">
-            <div class="product-gallery">
-                <div class="slider">
-                    <div class="slider-viewport">
-                        <img id="slider-main" src="" alt="">
-                    </div>
-                    <button type="button" class="slider-btn slider-btn--prev" id="slider-prev" onclick="changeSlide(-1)" aria-label="Previous image">
-                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M7 1 1 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                    <button type="button" class="slider-btn slider-btn--next" id="slider-next" onclick="changeSlide(1)" aria-label="Next image">
-                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="m1 1 6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                </div>
-                <div class="slider-thumbs" id="slider-thumbs"></div>
-            </div>
+  <main class="product-main">
+    <div class="container">
 
-            <div class="product-info">
-                <div>
-                    <h1 id="product-name"></h1>
-                    <div id="product-rating"></div>
-                    <p id="product-reviews"></p>
-                    <div class="product-price-row">
-                        <span class="product-price" id="product-price"></span>
-                        <span class="product-free-shipping">Free shipping</span>
-                    </div>
-                </div>
+      <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb"></nav>
 
-                <div class="product-highlights" id="product-highlights"></div>
+      <div id="productDetail" class="product-detail-wrap">
+        <div class="product-loading">Loading...</div>
+      </div>
 
-                <div class="product-description">
-                    <h2>Description</h2>
-                    <p id="product-description"></p>
-                </div>
+      <section class="related-section" id="relatedSection" hidden>
+        <h2 class="related-title">Related Products</h2>
+        <div class="related-grid" id="relatedGrid"></div>
+      </section>
 
-                <div class="product-quantity">
-                    <span class="product-quantity__label">Quantity</span>
-                    <div class="qty-controls">
-                        <button type="button" onclick="changeQty(-1)" aria-label="Decrease quantity">-</button>
-                        <span id="qty-value">1</span>
-                        <button type="button" onclick="changeQty(1)" aria-label="Increase quantity">+</button>
-                    </div>
-                </div>
+    </div>
+  </main>
 
-                <button type="button" class="btn-add-to-cart" id="add-to-cart-btn" onclick="handleAddToCart()">
-                    <span class="btn-add-to-cart__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="9" cy="21" r="1"></circle>
-                            <circle cx="20" cy="21" r="1"></circle>
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                        </svg>
-                    </span>
-                    <span>Add to Cart</span>
-                </button>
+  <footer class="site-footer"></footer>
+</div>
 
-                <div class="accordion">
-                    <button type="button" class="accordion-btn" onclick="toggleAccordion()" aria-expanded="false" id="accordion-toggle">
-                        Technical Specifications
-                        <span class="accordion-icon" aria-hidden="true">
-                            <svg class="accordion-icon__chev" width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1 7 7l6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </span>
-                    </button>
-                    <div class="accordion-body" id="accordion-body"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="related">
-            <h2>Related Products</h2>
-            <div class="products-grid" id="related-grid"></div>
-        </div>
-    </main>
-
-    <div id="site-footer"></div>
-
-    <script src="js/header.js"></script>
-    <script src="js/footer.js"></script>
-    <script src="js/layout.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/stars.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/product.js"></script>
+<script src="js/loadComponents.js"></script>
+<script src="js/header.js"></script>
+<script src="js/codeDeals.js"></script>
+<script src="js/product.js"></script>
 </body>
 </html>
