@@ -1,176 +1,167 @@
-const params = new URLSearchParams(window.location.search)
-const productId = parseInt(params.get('id'), 10)
-const product = Number.isFinite(productId)
-  ? products.find(p => p.id === productId)
-  : null
-
-let currentSlide = 0
+const productId = parseInt(new URLSearchParams(location.search).get('id'), 10)
+const discount = parseInt(new URLSearchParams(location.search).get('discount'), 10) || 0
+const product = Number.isFinite(productId) ? products.find(p => p.id === productId) : null
+let currentImage = 0
 let qty = 1
-let galleryImages = []
 
-function getSliderAlt(name, index, total) {
-  if (!name) return ''
-  if (!total || total <= 1) return name
-  return `${name} - Image ${index + 1}`
+const money = value => '$' + Number(value).toFixed(2)
+const imgs = item => Array.isArray(item.images) ? item.images.filter(Boolean) : []
+
+function cart() {
+  try { return JSON.parse(localStorage.getItem('cart')) || [] } catch (e) { return [] }
 }
 
-function updateSliderUI() {
-  if (!product) return
+function syncBadge() {
+  const badge = document.querySelector('.cart-badge')
+  if (!badge) return
+  const count = cart().reduce((sum, item) => sum + (item.quantity || item.qty || 0), 0)
+  badge.textContent = count ? String(count) : ''
+  badge.hidden = !count
+}
 
-  const mainImg = document.getElementById('slider-main')
-  const prevBtn = document.getElementById('slider-prev')
-  const nextBtn = document.getElementById('slider-next')
-  const hasMultipleImages = galleryImages.length > 1
+function addToCartLocal() {
+  const items = cart()
+  const found = items.find(item => item.id === product.id)
+  const image = imgs(product)[0] || ''
 
-  if (mainImg && galleryImages.length > 0) {
-    mainImg.src = galleryImages[currentSlide]
-    mainImg.alt = getSliderAlt(product.name, currentSlide, galleryImages.length)
-  }
-
-  if (prevBtn) prevBtn.hidden = !hasMultipleImages
-  if (nextBtn) nextBtn.hidden = !hasMultipleImages
-
-  document.querySelectorAll('.thumb-btn').forEach((button, index) => {
-    const active = index === currentSlide
-    button.setAttribute('aria-current', active ? 'true' : 'false')
+  if (found) found.quantity = (found.quantity || 0) + qty
+  else items.push({
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    subtitle: product.subtitle,
+    category: product.category,
+    image,
+    quantity: qty
   })
 
-  document.querySelectorAll('.thumb').forEach((thumb, index) => {
-    thumb.classList.toggle('thumb--active', index === currentSlide)
-    thumb.alt = getSliderAlt(product.name, index, galleryImages.length)
-  })
+  localStorage.setItem('cart', JSON.stringify(items))
+  syncBadge()
+  const btn = document.getElementById('addToCartBtn')
+  btn.textContent = 'In Cart'
+  btn.disabled = true
 }
 
-function normalizeProductImages(images) {
-  if (images == null) return []
-  if (typeof images === 'string') {
-    return images.split(/[,;\n]/).map(s => s.trim()).filter(Boolean)
-  }
-  if (Array.isArray(images)) {
-    return images.map(s => String(s).trim()).filter(Boolean)
-  }
-  return []
+function setImage(index) {
+  const images = imgs(product)
+  currentImage = (index + images.length) % images.length
+  document.getElementById('mainImage').src = images[currentImage]
+  document.querySelectorAll('.gallery-thumb')
+    .forEach((thumb, i) => thumb.classList.toggle('active', i === currentImage))
 }
 
-function formatMoney(n) {
-  return '$' + Number(n).toFixed(2)
+function priceHtml() {
+  if (!discount) return `<span class="product-price">${money(product.price)}</span>`
+  return `
+    <div class="product-price-discount-group">
+      <span class="product-price product-price--sale">${money(product.price * (1 - discount / 100))}</span>
+      <span class="product-price--original">${money(product.price)}</span>
+      <span class="product-price--badge">-${discount}%</span>
+    </div>`
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  if (!product) return
-
-  document.title = product.name + ' | TechStore'
-  galleryImages = normalizeProductImages(product.images)
-
-  document.getElementById('product-name').textContent = product.name
-  document.getElementById('product-price').textContent = formatMoney(product.price)
-  document.getElementById('product-description').textContent = product.description
-  const reviews = typeof product.reviewCount === 'number' ? product.reviewCount : 0
-  document.getElementById('product-reviews').textContent =
-    'Based on ' + reviews.toLocaleString('en-US') + ' reviews'
-  document.getElementById('breadcrumb-category').textContent = product.category
-  document.getElementById('breadcrumb-name').textContent = product.name
-
-  document.getElementById('product-rating').innerHTML = renderStars(product.rating)
-
-  const highlightsEl = document.getElementById('product-highlights')
-  highlightsEl.innerHTML =
-    '<div class="product-highlights__box">' +
-    '<h3 class="product-highlights__title">Key Highlights</h3>' +
-    '<div class="product-highlights__list">' +
-    Object.entries(product.specs)
-      .slice(0, 3)
-      .map(
-        ([key, value]) =>
-          `<div class="product-highlights__row"><span class="product-highlights__dot" aria-hidden="true"></span><span><span class="product-highlights__key">${key}:</span> ${value}</span></div>`
-      )
-      .join('') +
-    '</div>' +
-    '</div>'
-
-  const mainImg = document.getElementById('slider-main')
-  const thumbsContainer = document.getElementById('slider-thumbs')
-  if (galleryImages.length === 0) {
-    mainImg.removeAttribute('src')
-    mainImg.alt = product.name
-    thumbsContainer.innerHTML = ''
-    updateSliderUI()
-  } else {
-    currentSlide = 0
-    thumbsContainer.innerHTML = galleryImages.length > 1 ? galleryImages.map((img, index) => `
-    <button type="button" class="thumb-btn" onclick="goToSlide(${index})" aria-label="Show image ${index + 1}">
-      <img src="${img}" alt="" class="thumb ${index === 0 ? 'thumb--active' : ''}">
-    </button>
-  `).join('') : ''
-    updateSliderUI()
-  }
-
-  const accordionBody = document.getElementById('accordion-body')
-  accordionBody.innerHTML = Object.entries(product.specs).map(([key, value]) => `
-    <div class="spec-row">
-      <span class="spec-key">${key}</span>
-      <span class="spec-value">${value}</span>
-    </div>
-  `).join('')
-
-  const related = products
-    .filter(p => p.category === product.category && p.id !== product.id)
-    .slice(0, 3)
-  const relatedGrid = document.getElementById('related-grid')
-  relatedGrid.innerHTML = related.map(p => {
-    const relImg = normalizeProductImages(p.images)[0] || ''
-    return `
-    <div class="product-card">
-      <a href="product.html?id=${p.id}" class="product-card__media">
-        <img src="${relImg}" alt="${p.name}">
-      </a>
-      <div class="product-card__info">
-        <a href="product.html?id=${p.id}">
-          <h3 class="product-card__name">${p.name}</h3>
-        </a>
-        <div class="product-card__rating">${renderStars(p.rating)}</div>
-        <div class="product-card__bottom">
-          <span class="product-card__price">${formatMoney(p.price)}</span>
-          <span class="product-card__category">${p.category}</span>
-        </div>
+function galleryHtml() {
+  const images = imgs(product)
+  return `
+    <div class="gallery">
+      <div class="gallery-main">
+        <img src="${images[0] || ''}" alt="${product.name}" id="mainImage">
+        ${images.length > 1 ? `
+          <button class="gallery-arrow gallery-prev" id="galleryPrev" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+          <button class="gallery-arrow gallery-next" id="galleryNext" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6"></polyline></svg></button>` : ''}
       </div>
-    </div>
-  `
-  }).join('')
-})
-
-function changeSlide(direction) {
-  goToSlide(currentSlide + direction)
+      <div class="gallery-thumbs">
+        ${images.map((src, i) => `
+          <button class="gallery-thumb ${i === 0 ? 'active' : ''}" data-index="${i}" aria-label="Show image ${i + 1}">
+            <img src="${src}" alt="">
+          </button>`).join('')}
+      </div>
+    </div>`
 }
 
-function goToSlide(index) {
-  if (!product || galleryImages.length === 0) return
-  const images = galleryImages
-  if (index < 0) index = images.length - 1
-  if (index >= images.length) index = 0
-  currentSlide = index
-  updateSliderUI()
+function specsHtml(limit) {
+  return Object.entries(product.specs || {})
+    .slice(0, limit || undefined)
+    .map(([key, value]) => limit
+      ? `<li><strong>${key}:</strong> ${value}</li>`
+      : `<div class="specs-row"><span class="specs-key">${key}</span><span class="specs-val">${value}</span></div>`)
+    .join('')
 }
 
-function changeQty(direction) {
-  if (!product) return
-  qty += direction
-  if (qty < 1) qty = 1
-  document.getElementById('qty-value').textContent = qty
+function relatedHtml() {
+  return products
+    .filter(item => item.id !== product.id && item.category === product.category)
+    .slice(0, 4)
+    .map(item => `
+      <a href="product.html?id=${item.id}" class="related-card">
+        <div class="related-card-img"><img src="${imgs(item)[0] || ''}" alt="${item.name}"></div>
+        <div class="related-card-info">
+          <p class="related-card-name">${item.name}</p>
+          <div class="related-card-rating">${renderStars(item.rating)}</div>
+          <div class="related-card-meta">
+            <p class="related-card-price">${money(item.price)}</p>
+            <span class="related-card-category">${item.category}</span>
+          </div>
+        </div>
+      </a>`)
+    .join('')
 }
 
-function toggleAccordion() {
-  const body = document.getElementById('accordion-body')
-  const btn = document.getElementById('accordion-toggle')
-  if (!body || !btn) return
-  body.classList.toggle('accordion-body--open')
-  const open = body.classList.contains('accordion-body--open')
-  if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false')
+function bindEvents() {
+  document.querySelectorAll('.gallery-thumb')
+    .forEach(thumb => thumb.addEventListener('click', () => setImage(Number(thumb.dataset.index))))
+
+  document.getElementById('galleryPrev')?.addEventListener('click', () => setImage(currentImage - 1))
+  document.getElementById('galleryNext')?.addEventListener('click', () => setImage(currentImage + 1))
+  document.getElementById('qtyMinus').addEventListener('click', () => {
+    qty = Math.max(1, qty - 1)
+    document.getElementById('qtyValue').textContent = qty
+  })
+  document.getElementById('qtyPlus').addEventListener('click', () => {
+    qty += 1
+    document.getElementById('qtyValue').textContent = qty
+  })
+  document.getElementById('addToCartBtn').addEventListener('click', addToCartLocal)
+  document.getElementById('specsToggle')?.addEventListener('click', e => {
+    const open = document.getElementById('specsBody').classList.toggle('open')
+    e.currentTarget.classList.toggle('open', open)
+  })
 }
 
-function handleAddToCart() {
-  if (!product) return
-  for (let i = 0; i < qty; i++) {
-    addToCart(product.id)
+function render() {
+  document.title = product.name + ' - TechStore'
+  document.getElementById('breadcrumb').innerHTML = `
+    <a href="index.html">Products</a><span class="sep">›</span>
+    <a href="index.html?category=${encodeURIComponent(product.category)}">${product.category}</a><span class="sep">›</span>
+    <span class="current">${product.name}</span>`
+
+  document.getElementById('productDetail').innerHTML = `
+    <div class="product-detail-grid">
+      ${galleryHtml()}
+      <div class="product-info">
+        <h1 class="product-title">${product.name}</h1>
+        <div class="product-rating-row">${renderStars(product.rating)}</div>
+        <span class="reviews-count">Based on ${(product.reviewCount || 0).toLocaleString('en-US')} reviews</span>
+        <div class="product-price-row">${priceHtml()}<span class="free-shipping">Free shipping</span></div>
+        <div class="highlights-box"><h3>Key Highlights</h3><ul class="highlights-list">${specsHtml(3)}</ul></div>
+        <div class="product-description"><h3>Description</h3><p>${product.description}</p></div>
+        <div class="quantity-section"><p class="quantity-label">Quantity</p><div class="quantity-control"><button class="qty-btn" id="qtyMinus" type="button">-</button><span class="qty-value" id="qtyValue">1</span><button class="qty-btn" id="qtyPlus" type="button">+</button></div></div>
+        <button class="add-to-cart-btn" id="addToCartBtn" type="button">Add to Cart</button>
+        <div class="specs-accordion"><button class="specs-toggle" id="specsToggle" type="button">Technical Specifications</button><div class="specs-body" id="specsBody">${specsHtml()}</div></div>
+      </div>
+    </div>`
+
+  const related = relatedHtml()
+  if (related) {
+    document.getElementById('relatedSection').hidden = false
+    document.getElementById('relatedGrid').innerHTML = related
   }
+
+  bindEvents()
+  syncBadge()
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (product) render()
+  else document.getElementById('productDetail').innerHTML = '<p class="product-loading">Product not found.</p>'
+})

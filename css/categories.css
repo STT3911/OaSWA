@@ -1,0 +1,146 @@
+:root {
+  --clr-white: #fff;
+  --clr-text-primary: #111827;
+  --clr-text-muted: #4a5565;
+  --clr-bg-page: #f9fafb;
+  --clr-border: #e5e7eb;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--clr-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.page-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.categories-main {
+  flex: 1;
+  background: var(--clr-bg-page);
+}
+
+.categories-main .container {
+  padding-top: 32px;
+  padding-bottom: 48px;
+}
+
+.categories-heading {
+  margin-bottom: 32px;
+}
+
+.categories-heading h1 {
+  margin: 0 0 16px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.categories-heading p {
+  margin: 0;
+  color: var(--clr-text-muted);
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.category-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: clamp(220px, 44vw, 265px);
+  border-radius: 12px;
+  background: #1f2937;
+  color: var(--clr-white);
+  text-decoration: none;
+}
+
+.category-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.05);
+}
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent 60%);
+}
+
+.category-name {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.category-count {
+  margin-top: 2px;
+  color: var(--clr-border);
+  font-size: 14px;
+}
+
+@media (min-width: 480px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: 32px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1488px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+@media (max-width: 479px) {
+  .categories-main .container {
+    padding-top: 24px;
+    padding-bottom: 40px;
+  }
+
+  .categories-heading {
+    margin-bottom: 24px;
+  }
+
+  .category-overlay {
+    padding: 20px;
+  }
+}
