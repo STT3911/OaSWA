@@ -59,7 +59,8 @@ function getFilteredProducts() {
 
 // сорт
 function getSortedProducts(products) {
-  const val = document.getElementById('sortSelect').value;
+  const sortSelect = document.getElementById('sortSelect');
+  const val = sortSelect ? sortSelect.value : 'name-az';
   const sorted = products.slice(); // копия массива, не меняем оригинал, плохо
 
   if (val === 'name-az') {
@@ -80,6 +81,7 @@ function getSortedProducts(products) {
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
   const countEl = document.getElementById('productsCount');
+  if (!grid || !countEl) return;
 
   const filtered = getFilteredProducts();
   const sorted = getSortedProducts(filtered);
@@ -111,6 +113,7 @@ function initSlider() {
   const rangeActive = document.getElementById('rangeActive');
   const minLabel = document.getElementById('minPrice');
   const maxLabel = document.getElementById('maxPrice');
+  if (!minRange || !maxRange || !rangeActive || !minLabel || !maxLabel) return;
   const MIN_GAP = 50;
   const MAX_VAL = window.PRICE_MAX;
 
@@ -166,7 +169,7 @@ function initRatingFilters() {
       const val = parseFloat(this.value);
 
       if (this.checked) {
-        activeRatings.push(val);
+        if (activeRatings.indexOf(val) === -1) activeRatings.push(val);
       } else {
         const idx = activeRatings.indexOf(val);
         if (idx !== -1) activeRatings.splice(idx, 1);
@@ -179,12 +182,15 @@ function initRatingFilters() {
 
 // сортировка
 function initSort() {
-  document.getElementById('sortSelect').addEventListener('change', renderProducts);
+  const sortSelect = document.getElementById('sortSelect');
+  if (sortSelect) sortSelect.addEventListener('change', renderProducts);
 }
 
 // сброс фильт
 function initClearFilters() {
-  document.getElementById('clearFilters').addEventListener('click', function() {
+  const clearButton = document.getElementById('clearFilters');
+  if (!clearButton) return;
+  clearButton.addEventListener('click', function() {
     const checkboxes = document.querySelectorAll('.rating-checkbox');
     for (let i = 0; i < checkboxes.length; i++) {
       checkboxes[i].checked = false;
@@ -220,7 +226,7 @@ function initCategoryFromURL() {
   if (title) title.textContent = label;
   if (subtitle) {
     subtitle.innerHTML =
-      label + ' products &nbsp;·&nbsp; <a href="categories.html" style="color:#6b7280;text-decoration:underline;font-size:inherit">← All categories</a>';
+      label + ' products &nbsp;&middot;&nbsp; <a href="categories.html" style="color:#6b7280;text-decoration:underline;font-size:inherit">All categories</a>';
   }
 }
 
@@ -243,6 +249,7 @@ function updateCartButtons() {
 
 function initAddToCart() {
   const grid = document.getElementById('productsGrid');
+  if (!grid) return;
   grid.addEventListener('click', function(e) {
     const btn = e.target.closest('.add-to-cart-btn');
     if (!btn || btn.disabled) return;

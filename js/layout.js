@@ -10,4 +10,12 @@
     if (footerTarget && typeof window.getFooterHtml === "function") {
         footerTarget.outerHTML = window.getFooterHtml();
     }
+
+    if (typeof window.updateBadge === "function") {
+        window.updateBadge();
+    }
+
+    if (typeof window.initMobileMenu === "function") {
+        window.initMobileMenu();
+    }
 })();

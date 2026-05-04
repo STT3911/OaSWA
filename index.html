@@ -13,78 +13,155 @@
 <body>
     <div id="site-header" data-page="products"></div>
 
-    <main class="container">
-        <div class="catalog-title">
-            <h1>Premium Electronics</h1>
-            <p>Discover our curated collection of high-quality tech products</p>
-        </div>
-
-        <div class="catalog-toolbar">
-            <div class="catalog-toolbar__left">
-                <button type="button" class="catalog-filter-btn" aria-label="Filters">
-                    <img src="icons/filters.svg" alt="" width="16" height="16" aria-hidden="true">
-                    <span>Filters</span>
-                </button>
-                <span id="products-count"></span>
+    <main class="catalog-main">
+        <div class="container">
+            <div class="catalog-heading">
+                <h1 id="catalogTitle">Premium Electronics</h1>
+                <p id="catalogSubtitle">Discover our curated collection of high-quality tech products</p>
             </div>
-            <div class="sort">
-                <label class="sort__label" for="sort-select">Sort by:</label>
-                <div class="sort-select-wrap">
-                    <select id="sort-select" class="sort-select" onchange="applySortAndFilter()">
-                        <option value="name-asc">Name (A-Z)</option>
-                        <option value="name-desc">Name (Z-A)</option>
+
+            <div class="catalog-toolbar">
+                <div class="toolbar-left">
+                    <button type="button" class="filter-btn-mobile" aria-label="Open filters">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                            <line x1="21" y1="4" x2="14" y2="4"></line>
+                            <line x1="10" y1="4" x2="3" y2="4"></line>
+                            <line x1="21" y1="12" x2="12" y2="12"></line>
+                            <line x1="8" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="20" x2="16" y2="20"></line>
+                            <line x1="12" y1="20" x2="3" y2="20"></line>
+                            <line x1="14" y1="2" x2="14" y2="6"></line>
+                            <line x1="8" y1="10" x2="8" y2="14"></line>
+                            <line x1="16" y1="18" x2="16" y2="22"></line>
+                        </svg>
+                        <span>Filters</span>
+                    </button>
+                    <span class="products-count" id="productsCount"></span>
+                </div>
+
+                <div class="toolbar-right">
+                    <label for="sortSelect">Sort by:</label>
+                    <select id="sortSelect" class="sort-select">
+                        <option value="name-az">Name (A-Z)</option>
+                        <option value="name-za">Name (Z-A)</option>
                         <option value="price-asc">Price (Low to High)</option>
                         <option value="price-desc">Price (High to Low)</option>
                     </select>
-                    <span class="sort-select__chev" aria-hidden="true">
-                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </span>
                 </div>
             </div>
-        </div>
 
-        <div class="catalog-layout">
-            <aside class="filters">
-                <div class="filters__panel">
-                    <h2 class="filters__title">
-                        <img src="icons/filters.svg" alt="" width="20" height="20" aria-hidden="true">
-                        Filters
-                    </h2>
+            <div class="catalog-layout">
+                <aside class="sidebar" aria-label="Product filters">
+                    <div class="sidebar-inner">
+                        <h2 class="sidebar-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                <line x1="21" y1="4" x2="14" y2="4"></line>
+                                <line x1="10" y1="4" x2="3" y2="4"></line>
+                                <line x1="21" y1="12" x2="12" y2="12"></line>
+                                <line x1="8" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="20" x2="16" y2="20"></line>
+                                <line x1="12" y1="20" x2="3" y2="20"></line>
+                                <line x1="14" y1="2" x2="14" y2="6"></line>
+                                <line x1="8" y1="10" x2="8" y2="14"></line>
+                                <line x1="16" y1="18" x2="16" y2="22"></line>
+                            </svg>
+                            Filters
+                        </h2>
 
-                    <div class="filter-group">
-                        <h3 class="filter-group__title">Rating</h3>
-                        <div class="filter-group__options">
-                            <label class="filter-option"><input type="radio" name="rating" value="5"> 5+ Stars</label>
-                            <label class="filter-option"><input type="radio" name="rating" value="4"> 4+ Stars</label>
-                            <label class="filter-option"><input type="radio" name="rating" value="3"> 3+ Stars</label>
+                        <div class="filters-group">
+                            <div class="filter-section">
+                                <h3>Rating</h3>
+                                <div class="rating-options">
+                                    <div class="rating-option">
+                                        <input type="checkbox" id="rating-5" class="custom-checkbox rating-checkbox" value="5">
+                                        <label for="rating-5">5+ Stars</label>
+                                    </div>
+                                    <div class="rating-option">
+                                        <input type="checkbox" id="rating-4" class="custom-checkbox rating-checkbox" value="4">
+                                        <label for="rating-4">4+ Stars</label>
+                                    </div>
+                                    <div class="rating-option">
+                                        <input type="checkbox" id="rating-3" class="custom-checkbox rating-checkbox" value="3">
+                                        <label for="rating-3">3+ Stars</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="price-range-section">
+                                <h3>Price Range</h3>
+                                <div class="range-track-wrapper">
+                                    <div class="range-track">
+                                        <div class="range-active" id="rangeActive"></div>
+                                    </div>
+                                    <input type="range" id="minRange" class="range-input" min="0" max="3000" value="0">
+                                    <input type="range" id="maxRange" class="range-input" min="0" max="3000" value="3000">
+                                </div>
+                                <div class="price-labels">
+                                    <span id="minPrice">$0</span>
+                                    <span id="maxPrice">$3000</span>
+                                </div>
+                            </div>
+
+                            <button type="button" class="clear-filters-btn" id="clearFilters">Clear All Filters</button>
                         </div>
                     </div>
+                </aside>
 
-                    <div class="filter-group">
-                        <h3 class="filter-group__title">Price Range</h3>
-                        <div class="dual-slider-container">
-                            <div class="dual-slider-track"></div>
-                            <div class="dual-slider-fill" id="slider-fill"></div>
-                            <input type="range" min="0" max="3000" value="0" id="slider-min" class="dual-slider-input">
-                            <input type="range" min="0" max="3000" value="3000" id="slider-max" class="dual-slider-input">
-                        </div>
-                        <div class="price-labels">
-                            <span id="price-min-label">$0</span>
-                            <span id="price-max-label">$3000</span>
-                        </div>
-                    </div>
-
-                    <button type="button" class="btn-clear" onclick="clearFilters()">Clear All Filters</button>
+                <div class="products-area">
+                    <div class="products-grid" id="productsGrid"></div>
                 </div>
-            </aside>
-
-            <div class="catalog-right">
-                <div class="products-grid" id="products-grid"></div>
             </div>
         </div>
     </main>
 
     <div id="site-footer"></div>
+
+    <div class="filter-overlay" id="filterOverlay"></div>
+
+    <div class="filter-drawer" id="filterDrawer" aria-hidden="true">
+        <div class="filter-drawer-header">
+            <h2>Filters</h2>
+            <button type="button" class="filter-drawer-close" id="filterDrawerClose" aria-label="Close filters">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="filter-drawer-body">
+            <div class="filter-section">
+                <h3>Rating</h3>
+                <div class="rating-options">
+                    <div class="rating-option">
+                        <input type="checkbox" id="mob-rating-5" class="custom-checkbox mob-rating-checkbox" value="5">
+                        <label for="mob-rating-5">5+ Stars</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="checkbox" id="mob-rating-4" class="custom-checkbox mob-rating-checkbox" value="4">
+                        <label for="mob-rating-4">4+ Stars</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="checkbox" id="mob-rating-3" class="custom-checkbox mob-rating-checkbox" value="3">
+                        <label for="mob-rating-3">3+ Stars</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-range-section">
+                <h3>Price Range</h3>
+                <div class="range-track-wrapper">
+                    <div class="range-track">
+                        <div class="range-active" id="mob-rangeActive"></div>
+                    </div>
+                    <input type="range" id="mob-minRange" class="range-input" min="0" max="3000" value="0">
+                    <input type="range" id="mob-maxRange" class="range-input" min="0" max="3000" value="3000">
+                </div>
+                <div class="price-labels">
+                    <span id="mob-minPrice">$0</span>
+                    <span id="mob-maxPrice">$3000</span>
+                </div>
+            </div>
+
+            <button type="button" class="clear-filters-btn filter-drawer-clear" id="mobClearFilters">Clear All Filters</button>
+        </div>
+    </div>
 
     <script src="js/header.js"></script>
     <script src="js/footer.js"></script>
@@ -93,5 +170,6 @@
     <script src="js/stars.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/catalog.js"></script>
+    <script src="js/filterDrawer.js"></script>
 </body>
 </html>

@@ -5,17 +5,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.getElementById('filterDrawerClose');
   const mobMinRange = document.getElementById('mob-minRange');
   const mobMaxRange = document.getElementById('mob-maxRange');
+  if (!drawer || !overlay || !openBtn || !closeBtn || !mobMinRange || !mobMaxRange) return;
 
   function openDrawer() {
     syncDrawerFromSidebar();
     drawer.classList.add('open');
     overlay.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
 
   function closeDrawer() {
     drawer.classList.remove('open');
     overlay.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
@@ -59,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const active   = document.getElementById('mob-rangeActive');
     const minLabel = document.getElementById('mob-minPrice');
     const maxLabel = document.getElementById('mob-maxPrice');
+    if (!active || !minLabel || !maxLabel) return;
     const MIN_GAP  = 50;
     const MAX_VAL  = window.PRICE_MAX || 3000;
 
